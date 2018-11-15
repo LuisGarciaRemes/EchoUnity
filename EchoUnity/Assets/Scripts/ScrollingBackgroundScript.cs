@@ -9,11 +9,13 @@ public class ScrollingBackgroundScript : MonoBehaviour {
 
     private Vector3 startPosition;
 
+    //Gets the transform position
     void Start()
     {
         startPosition = transform.position;
     }
 
+    //Scrolls the background
     void Update()
     {
         float newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizeX);

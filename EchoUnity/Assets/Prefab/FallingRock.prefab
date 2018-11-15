@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114282352978219732}
   - component: {fileID: 114471529486919286}
   - component: {fileID: 70667657241581164}
+  - component: {fileID: 114639706716528068}
   m_Layer: 0
   m_Name: FallingRock
   m_TagString: Rock
@@ -108,6 +109,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minX: -10.5
+--- !u!114 &114639706716528068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1458086066258890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d632ef2dd72bcb4caee54098b49b77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLapse: 5
 --- !u!212 &212988145692169956
 SpriteRenderer:
   m_ObjectHideFlags: 1

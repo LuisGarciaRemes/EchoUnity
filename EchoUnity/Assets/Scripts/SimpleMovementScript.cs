@@ -15,13 +15,13 @@ public class SimpleMovementScript : MonoBehaviour {
     private const float NORMALIZE = .01f;
     private Rigidbody2D RB;
 
-	// Use this for initialization
+	//Gets Rerence for gameObjects Rigidbody
 	void Start () {
         RB = gameObject.GetComponent<Rigidbody2D>();
         orgPos = RB.position;
 	}
 	
-	// Update is called once per frame
+	//Moves the gameObject left or right and oscillates if oscillate option is checked
 	void Update () {
 
 		if(oscillate)

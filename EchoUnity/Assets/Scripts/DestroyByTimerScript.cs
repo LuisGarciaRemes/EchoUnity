@@ -6,12 +6,13 @@ public class DestroyByTimerScript : MonoBehaviour {
 
     private float timer;
     public float lifespan;
-	// Use this for initialization
+
+    //Sets timer to 0
 	void Start () {
         timer = 0;
 	}
 	
-	// Update is called once per frame
+    //Destroys gameObject when the timer reaches the specified time
 	void Update () {
 		if(timer >= lifespan)
         {

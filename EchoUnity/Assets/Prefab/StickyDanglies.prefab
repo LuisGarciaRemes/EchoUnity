@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114840114847640412}
   - component: {fileID: 114638706303312128}
   - component: {fileID: 60966632291966420}
+  - component: {fileID: 114231888502356702}
   m_Layer: 0
   m_Name: StickyDanglies
   m_TagString: Sticky
@@ -195,6 +196,18 @@ PolygonCollider2D:
       - {x: -0.26999998, y: 0.405}
       - {x: -0.29, y: 0.305}
       - {x: -0.28, y: 0.145}
+--- !u!114 &114231888502356702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1334853262015404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d632ef2dd72bcb4caee54098b49b77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLapse: 5
 --- !u!114 &114638706303312128
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114403275669419420}
   - component: {fileID: 114884856310258224}
   - component: {fileID: 60640113352375522}
+  - component: {fileID: 114206965562308722}
   m_Layer: 0
   m_Name: Stalactite2
   m_TagString: Rock
@@ -132,6 +133,18 @@ PolygonCollider2D:
       - {x: 0.015, y: -1.3249999}
       - {x: 0.065, y: -1.125}
       - {x: 0.095, y: -0.895}
+--- !u!114 &114206965562308722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634312634969098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d632ef2dd72bcb4caee54098b49b77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLapse: 5
 --- !u!114 &114403275669419420
 MonoBehaviour:
   m_ObjectHideFlags: 1
