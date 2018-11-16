@@ -9,6 +9,7 @@ TagManager:
   - Wave
   - Rock
   - Sticky
+  - Snake
   layers:
   - Default
   - TransparentFX

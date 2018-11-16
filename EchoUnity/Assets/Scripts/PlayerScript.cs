@@ -13,28 +13,43 @@ public class PlayerScript : MonoBehaviour {
     public GameObject wave;
     public Sprite[] sprites;
     public GameObject[] colliders;
+    public GameObject[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+    public float hurtTime;
 
     private const float NORMALIZE = .01f;
+    private const float MAXLIVES = 5;
     private Rigidbody2D playerRB;
     private bool canFire;
     private Sprite anim;
-    private float timer;
+    private float fireTimer;
+    private float numHearts;
+    private bool isHurt;
+    private float hurtTimer;
+    private bool canTakeDamage;
+
 
     // Initialized variables
     void Start () {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
         canFire = true;
+        canTakeDamage = true;
+        isHurt = false;
+        numHearts = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         GetInput();
-        ColliderController();
+        UpdateCollider();
         CheckFire();
+        UpdateLifeBar();
+        UpdateColor();
     }
 
-    private void ColliderController()
+    private void UpdateCollider()
     {
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
 
@@ -61,18 +76,67 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
-    void CheckFire()
+    private void UpdateLifeBar()
+    {
+        for(int i = 0; i < MAXLIVES; i++ )
+        {       
+            if ( i < numHearts && numHearts > 0)
+            {
+                hearts[i].GetComponent<SpriteRenderer>().sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].GetComponent<SpriteRenderer>().sprite = emptyHeart;
+            }
+        }
+    }
+
+    private void CheckFire()
     {
         if(!canFire)
         {
-            if (timer <= 0)
+            if (fireTimer <= 0)
             {
                 canFire = true;
             }
             else
             {
-                timer -= Time.deltaTime;
+                fireTimer -= Time.deltaTime;
             }
+        }
+    }
+
+    private void UpdateColor()
+    {
+        if(isHurt)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+
+            if(hurtTimer <= 0)
+            {
+                isHurt = false;
+                canTakeDamage = true;
+            }
+            else
+            {
+                hurtTimer -= Time.deltaTime;
+            }
+
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    public void TakeDamage()
+    {
+        if (canTakeDamage)
+        {
+            hurtTimer = hurtTime;
+            numHearts--;
+            isHurt = true;
+            canTakeDamage = false;
         }
     }
 
@@ -102,10 +166,12 @@ public class PlayerScript : MonoBehaviour {
         if(Input.GetKey("space") && canFire)
         {
             Instantiate(wave,new Vector3(playerRB.position.x + wave.transform.position.x,playerRB.position.y + wave.transform.position.y, 0.0f),Quaternion.identity);
-            timer = fireRate;
+            fireTimer = fireRate;
             canFire = false;
         }
 
         playerRB.transform.position += new Vector3(xVel * NORMALIZE, yVel * NORMALIZE, 0.0f);
     }
+ 
 }
+
