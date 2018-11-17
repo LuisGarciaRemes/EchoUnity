@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114638706303312128}
   - component: {fileID: 60966632291966420}
   - component: {fileID: 114231888502356702}
+  - component: {fileID: 114884707845719020}
   m_Layer: 0
   m_Name: StickyDanglies
   m_TagString: Sticky
@@ -237,6 +238,19 @@ MonoBehaviour:
   speedX: -5
   speedY: 0
   rateExpand: 0
+--- !u!114 &114884707845719020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1334853262015404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562275689f53804488a798734c597d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nerfTime: 2
+  amountReduce: 2
 --- !u!212 &212559975225213876
 SpriteRenderer:
   m_ObjectHideFlags: 1

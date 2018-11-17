@@ -28,6 +28,9 @@ public class PlayerScript : MonoBehaviour {
     private bool isHurt;
     private float hurtTimer;
     private bool canTakeDamage;
+    private float nerfTimer;
+    private bool canBeNerfed;
+    private float orgSpeed;
 
 
     // Initialized variables
@@ -35,9 +38,11 @@ public class PlayerScript : MonoBehaviour {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
         canFire = true;
+        canBeNerfed = true;
         canTakeDamage = true;
         isHurt = false;
         numHearts = 5;
+        orgSpeed = speed;
 	}
 	
 	// Update is called once per frame
@@ -47,6 +52,7 @@ public class PlayerScript : MonoBehaviour {
         CheckFire();
         UpdateLifeBar();
         UpdateColor();
+        CheckSpeed();
     }
 
     private void UpdateCollider()
@@ -88,6 +94,11 @@ public class PlayerScript : MonoBehaviour {
             {
                 hearts[i].GetComponent<SpriteRenderer>().sprite = emptyHeart;
             }
+        }
+
+        if(numHearts > MAXLIVES)
+        {
+            numHearts = MAXLIVES;
         }
     }
 
@@ -138,6 +149,37 @@ public class PlayerScript : MonoBehaviour {
             isHurt = true;
             canTakeDamage = false;
         }
+    }
+
+    public void ReduceSpeed(float nerfTime, float amountReduce)
+    {
+        if(canBeNerfed)
+        {
+            nerfTimer = nerfTime;
+            speed -= amountReduce;
+            canBeNerfed = false;
+        }
+    }
+
+    private void CheckSpeed()
+    {
+        if (!canBeNerfed)
+        {
+            if(nerfTimer <= 0)
+            {
+                speed = orgSpeed;
+                canBeNerfed = true;
+            }
+            else
+            {
+                nerfTimer -= Time.deltaTime;
+            }
+        }
+    }
+
+    public void AddHeart()
+    {
+        numHearts++;
     }
 
     private void GetInput()
