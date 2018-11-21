@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLapse: 5
+  echoVol: 0.05
+  echoSound: {fileID: 8300000, guid: b1be949ed9fb45b4f87fe49f86948bd8, type: 3}
 --- !u!114 &114351582706068440
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,5 +20,4 @@ public class PointsOnCollisionScript : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-
     }

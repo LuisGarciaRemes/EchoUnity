@@ -5,12 +5,17 @@ using UnityEngine;
 public class EchoLocateScript : MonoBehaviour {
 
     public float timeLapse;
+    public float echoVol;
+    public AudioClip echoSound;
+
     private Color color;
+    private AudioSource audioSource;
 
     //Makes gameObject invisible
 	void Start () {
        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
-	}
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
 	
     //Updates the opacity
 	void Update () {
@@ -28,6 +33,7 @@ public class EchoLocateScript : MonoBehaviour {
     {
         if(other.CompareTag("Wave"))
         {
+            audioSource.PlayOneShot(echoSound,echoVol);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }

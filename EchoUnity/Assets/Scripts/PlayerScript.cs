@@ -17,6 +17,9 @@ public class PlayerScript : MonoBehaviour {
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public float hurtTime;
+    public AudioClip hurtSound;
+    public AudioClip tangleSound;
+    public AudioClip lifeUpSound;
 
     private const float NORMALIZE = .01f;
     private const float MAXLIVES = 5;
@@ -27,16 +30,18 @@ public class PlayerScript : MonoBehaviour {
     private float numHearts;
     private bool isHurt;
     private float hurtTimer;
-    private bool canTakeDamage;
     private float nerfTimer;
     private bool canBeNerfed;
     private float orgSpeed;
+    private AudioSource audioSource;
 
+    internal bool canTakeDamage;
 
     // Initialized variables
     void Start () {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
+        audioSource = gameObject.GetComponent<AudioSource>();
         canFire = true;
         canBeNerfed = true;
         canTakeDamage = true;
@@ -144,6 +149,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if (canTakeDamage)
         {
+            audioSource.PlayOneShot(hurtSound);
             hurtTimer = hurtTime;
             numHearts--;
             isHurt = true;
@@ -155,6 +161,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if(canBeNerfed)
         {
+            audioSource.PlayOneShot(tangleSound);
             nerfTimer = nerfTime;
             speed -= amountReduce;
             canBeNerfed = false;
@@ -179,6 +186,10 @@ public class PlayerScript : MonoBehaviour {
 
     public void AddHeart()
     {
+        if (numHearts < 5)
+        {
+            audioSource.PlayOneShot(lifeUpSound);
+        }
         numHearts++;
     }
 
