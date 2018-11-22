@@ -10,17 +10,19 @@ public class EchoLocateScript : MonoBehaviour {
 
     private Color color;
     private AudioSource audioSource;
+    private GameObject gameManager;
 
     //Makes gameObject invisible
-	void Start () {
+    void Start () {
        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         audioSource = gameObject.GetComponent<AudioSource>();
+        gameManager = GameObject.Find("GameManager");
     }
 	
     //Updates the opacity
 	void Update () {
 
-        if (gameObject.GetComponent<SpriteRenderer>().color.a > 0)
+        if (gameObject.GetComponent<SpriteRenderer>().color.a > 0 && !gameManager.GetComponent<GameManagerScript>().paused)
         {
             color = gameObject.GetComponent<SpriteRenderer>().color;
             color.a -= (1 / (timeLapse))*Time.deltaTime;
@@ -31,7 +33,7 @@ public class EchoLocateScript : MonoBehaviour {
     //Makes the gameObject visible when hit by Wave
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Wave"))
+        if(other.CompareTag("Wave") && !gameManager.GetComponent<GameManagerScript>().paused)
         {
             audioSource.PlayOneShot(echoSound,echoVol);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);

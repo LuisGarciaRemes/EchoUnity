@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour {
     public AudioClip tangleSound;
     public AudioClip lifeUpSound;
 
+    private GameObject gameManager;
     private const float NORMALIZE = .01f;
     private const float MAXLIVES = 5;
     private Rigidbody2D playerRB;
@@ -42,6 +43,7 @@ public class PlayerScript : MonoBehaviour {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
         audioSource = gameObject.GetComponent<AudioSource>();
+        gameManager = GameObject.Find("GameManager");
         canFire = true;
         canBeNerfed = true;
         canTakeDamage = true;
@@ -52,12 +54,20 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GetInput();
-        UpdateCollider();
-        CheckFire();
-        UpdateLifeBar();
-        UpdateColor();
-        CheckSpeed();
+        if (!gameManager.GetComponent<GameManagerScript>().paused)
+        {
+            GetInput();
+            UpdateCollider();
+            CheckFire();
+            UpdateLifeBar();
+            UpdateColor();
+            CheckSpeed();
+            audioSource.UnPause();
+        }
+        else
+        {
+            audioSource.Pause();
+        }
     }
 
     private void UpdateCollider()
@@ -104,6 +114,11 @@ public class PlayerScript : MonoBehaviour {
         if(numHearts > MAXLIVES)
         {
             numHearts = MAXLIVES;
+        }
+
+        if(numHearts <= 0)
+        {
+            gameManager.GetComponent<GameManagerScript>().GameOver();
         }
     }
 

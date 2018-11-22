@@ -8,16 +8,18 @@ public class KnockBackScript : MonoBehaviour {
 
     private GameObject echo;
     private AudioSource audioSource;
+    private GameObject gameManager;
 
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         echo = GameObject.Find("Echo");
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
         {
             if (echo.GetComponent<PlayerScript>().canTakeDamage) {
                 audioSource.Play();
@@ -27,7 +29,7 @@ public class KnockBackScript : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
         {
             float direction;
 
