@@ -11,6 +11,7 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject startScreen;
     public GameObject gameOverScreen;
 
+    private GameObject echo;
     private int score;
     private float timerPointsPerSecond;
     private AudioSource audioSource;
@@ -19,6 +20,8 @@ public class GameManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        echo = GameObject.Find("Echo");
+        startScreen.SetActive(true);
         gameOver = false;
         paused = true;
         Time.timeScale = 0;
@@ -30,11 +33,19 @@ public class GameManagerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !gameOver)
         {
             paused = !paused;
             Time.timeScale = paused ? 0 : 1;
             startScreen.SetActive(paused);
+        }
+        else if(Input.GetKeyDown(KeyCode.Return) && gameOver)
+        {
+            paused = false;
+            Time.timeScale = 1;
+            gameOverScreen.SetActive(false);
+            score = 0;
+            echo.GetComponent<PlayerScript>().restart();
         }
 
         if (timerPoints)

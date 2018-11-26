@@ -240,6 +240,12 @@ public class PlayerScript : MonoBehaviour {
 
         playerRB.transform.position += new Vector3(xVel * NORMALIZE, yVel * NORMALIZE, 0.0f);
     }
+
+    public void restart()
+    {
+        numHearts = 5;
+        transform.position = new Vector3(-7f,0f,0f);
+    }
  
 }
 
