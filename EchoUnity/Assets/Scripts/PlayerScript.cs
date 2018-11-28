@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour {
     public AudioClip hurtSound;
     public AudioClip tangleSound;
     public AudioClip lifeUpSound;
+    public float vol;
 
     private GameObject gameManager;
     private const float NORMALIZE = .01f;
@@ -154,6 +155,10 @@ public class PlayerScript : MonoBehaviour {
             }
 
         }
+        else if(!canBeNerfed)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
         else
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
@@ -164,7 +169,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if (canTakeDamage)
         {
-            audioSource.PlayOneShot(hurtSound);
+            audioSource.PlayOneShot(hurtSound,vol);
             hurtTimer = hurtTime;
             numHearts--;
             isHurt = true;
@@ -176,7 +181,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if(canBeNerfed)
         {
-            audioSource.PlayOneShot(tangleSound);
+            audioSource.PlayOneShot(tangleSound,vol);
             nerfTimer = nerfTime;
             speed -= amountReduce;
             canBeNerfed = false;

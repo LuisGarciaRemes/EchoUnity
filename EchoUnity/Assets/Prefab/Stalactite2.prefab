@@ -270,9 +270,10 @@ MonoBehaviour:
   oscillate: 0
   expand: 0
   amplitude: 0
-  speedX: -5
+  speedX: -6
   speedY: 0
   rateExpand: 0
+  expandMax: 0
 --- !u!114 &114884856310258224
 MonoBehaviour:
   m_ObjectHideFlags: 1

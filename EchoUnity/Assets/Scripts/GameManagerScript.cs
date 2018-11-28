@@ -8,15 +8,19 @@ public class GameManagerScript : MonoBehaviour {
     public Text scoreText;
     public bool timerPoints;
     public AudioClip addPointsSound;
+    public AudioClip startSound;
     public GameObject startScreen;
     public GameObject gameOverScreen;
+    public float speedUpAmount;
 
     private GameObject echo;
     private int score;
     private float timerPointsPerSecond;
     private AudioSource audioSource;
-    internal bool paused;
     private bool gameOver;
+    
+    internal bool paused;
+    internal int level;
 
     // Use this for initialization
     void Start () {
@@ -28,7 +32,8 @@ public class GameManagerScript : MonoBehaviour {
         timerPointsPerSecond = 0;
         score = 0;
         audioSource = gameObject.GetComponent<AudioSource>();
-    }
+        level = 0;
+     }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,9 +43,11 @@ public class GameManagerScript : MonoBehaviour {
             paused = !paused;
             Time.timeScale = paused ? 0 : 1;
             startScreen.SetActive(paused);
+            audioSource.PlayOneShot(startSound);
         }
         else if(Input.GetKeyDown(KeyCode.Return) && gameOver)
         {
+            audioSource.PlayOneShot(startSound);
             paused = false;
             Time.timeScale = 1;
             gameOverScreen.SetActive(false);
@@ -75,5 +82,10 @@ public class GameManagerScript : MonoBehaviour {
         paused = true;
         gameOver = true;
         gameOverScreen.SetActive(true);
+    }
+
+    public void NextLevel()
+    {
+        level++;
     }
 }
