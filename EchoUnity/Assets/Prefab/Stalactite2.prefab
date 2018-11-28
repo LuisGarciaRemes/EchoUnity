@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114206965562308722}
   - component: {fileID: 114051299583438390}
   - component: {fileID: 82149387666745960}
+  - component: {fileID: 114306091851702330}
   m_Layer: 0
   m_Name: Stalactite2
   m_TagString: Rock
@@ -256,6 +257,17 @@ MonoBehaviour:
   timeLapse: 5
   echoVol: 0.05
   echoSound: {fileID: 8300000, guid: b1be949ed9fb45b4f87fe49f86948bd8, type: 3}
+--- !u!114 &114306091851702330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634312634969098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbd9150b3511214fb543da51c7e70d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114403275669419420
 MonoBehaviour:
   m_ObjectHideFlags: 1

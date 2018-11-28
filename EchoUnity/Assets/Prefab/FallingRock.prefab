@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114639706716528068}
   - component: {fileID: 114883894813083718}
   - component: {fileID: 82047533092732926}
+  - component: {fileID: 114150992754881124}
   m_Layer: 0
   m_Name: FallingRock
   m_TagString: Rock
@@ -177,6 +178,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114150992754881124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1458086066258890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbd9150b3511214fb543da51c7e70d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114282352978219732
 MonoBehaviour:
   m_ObjectHideFlags: 1

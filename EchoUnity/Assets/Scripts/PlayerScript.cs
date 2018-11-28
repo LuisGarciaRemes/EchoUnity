@@ -250,6 +250,11 @@ public class PlayerScript : MonoBehaviour {
     {
         numHearts = 5;
         transform.position = new Vector3(-7f,0f,0f);
+        isHurt = false;
+        canBeNerfed = true;
+        speed = orgSpeed;
+        canTakeDamage = true;
+        canFire = true;
     }
  
 }

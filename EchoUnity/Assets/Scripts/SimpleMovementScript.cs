@@ -52,7 +52,7 @@ public class SimpleMovementScript : MonoBehaviour {
 
         if (this.gameObject.CompareTag("Rock") || this.gameObject.CompareTag("Sticky"))
         {
-            speedX = initSpeed - gameManager.GetComponent<GameManagerScript>().level * gameManager.GetComponent<GameManagerScript>().speedUpAmount;
+            speedX = initSpeed - ((gameManager.GetComponent<GameManagerScript>().level - 1)* gameManager.GetComponent<GameManagerScript>().speedUpAmount);
         }
     }
 }
