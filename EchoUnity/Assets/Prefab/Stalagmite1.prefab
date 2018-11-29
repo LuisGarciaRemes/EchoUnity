@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114537278155195412}
   - component: {fileID: 114787710459935630}
   - component: {fileID: 82224938087942548}
+  - component: {fileID: 114515427593966750}
   m_Layer: 0
   m_Name: Stalagmite1
   m_TagString: Rock
@@ -234,6 +235,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minX: -10.5
+--- !u!114 &114515427593966750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1685415302821090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbd9150b3511214fb543da51c7e70d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114537278155195412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,9 +274,10 @@ MonoBehaviour:
   oscillate: 0
   expand: 0
   amplitude: 0
-  speedX: -5
+  speedX: -6
   speedY: 0
   rateExpand: 0
+  expandMax: 0
 --- !u!114 &114787710459935630
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -11,13 +11,12 @@ public class SlowOnCollisionScript : MonoBehaviour {
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager");
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponentInParent<PlayerScript>().ReduceSpeed(nerfTime,amountReduce);
             audioSource.Play();
