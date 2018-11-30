@@ -28,36 +28,35 @@ public class SpawnerScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        waveTimer = 0;
-        spawnTimer = 0;
-        obstacleCounter = 0;
-        spawnTime = Random.Range(minTime, maxTime);
+        resetSpawner();
         currBoss = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (obstacleCounter <= obstaclesPerLevel)
-        {
-            if (spawnTimer > spawnTime)
+        if (!gameObject.GetComponent<GameManagerScript>().gameOver) {
+            if (obstacleCounter <= obstaclesPerLevel)
             {
-                Vector3 obstaclePos = new Vector3(transform.position.x, Random.Range(minY, maxY), 0.0f);
-                Instantiate(ObstacleType(obstaclePos.y), obstaclePos, Quaternion.identity);
-                obstaclePos = new Vector3(transform.position.x, Random.Range(minY, maxY), 0.0f);
-                Instantiate(firefly, obstaclePos, Quaternion.identity);
-                spawnTime = Random.Range(minTime, maxTime);
-                spawnTimer = 0;
-                obstacleCounter++;
+                if (spawnTimer > spawnTime)
+                {
+                    Vector3 obstaclePos = new Vector3(transform.position.x, Random.Range(minY, maxY), 0.0f);
+                    Instantiate(ObstacleType(obstaclePos.y), obstaclePos, Quaternion.identity);
+                    obstaclePos = new Vector3(transform.position.x, Random.Range(minY, maxY), 0.0f);
+                    Instantiate(firefly, obstaclePos, Quaternion.identity);
+                    spawnTime = Random.Range(minTime, maxTime);
+                    spawnTimer = 0;
+                    obstacleCounter++;
+                }
+                else
+                {
+                    spawnTimer += Time.deltaTime;
+                }
             }
             else
             {
-                spawnTimer += Time.deltaTime;             
+                checkWave();
             }
-        }
-        else
-        {
-            checkWave();
         }
     }
 
@@ -95,5 +94,13 @@ public class SpawnerScript : MonoBehaviour {
     {
         Vector3 obstaclePos = new Vector3(transform.position.x, Random.Range(minY, maxY), 0.0f);
         Instantiate(fruit, obstaclePos, Quaternion.identity);
+    }
+
+    public void resetSpawner()
+    {
+        waveTimer = 0;
+        spawnTimer = 0;
+        obstacleCounter = 0;
+        spawnTime = Random.Range(minTime, maxTime);
     }
 }
