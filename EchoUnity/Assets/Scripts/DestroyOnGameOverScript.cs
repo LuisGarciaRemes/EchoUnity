@@ -13,7 +13,7 @@ public class DestroyOnGameOverScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(gameManager.GetComponent<GameManagerScript>().gameOverScreen.activeSelf)
+		if(gameManager.GetComponent<GameManagerScript>().die)
         {
             Destroy(this.gameObject);
         }

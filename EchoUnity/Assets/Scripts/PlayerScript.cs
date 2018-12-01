@@ -169,9 +169,14 @@ public class PlayerScript : MonoBehaviour {
     {
         if (canTakeDamage)
         {
-            audioSource.PlayOneShot(hurtSound,vol);
             hurtTimer = hurtTime;
             numHearts--;
+
+            if (numHearts > 0)
+            {
+                audioSource.PlayOneShot(hurtSound, vol);
+            }
+
             isHurt = true;
             canTakeDamage = false;
         }
