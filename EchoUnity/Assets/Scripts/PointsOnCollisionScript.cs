@@ -16,7 +16,7 @@ public class PointsOnCollisionScript : MonoBehaviour {
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            gameManager.GetComponent<GameManagerScript>().addPoints(points);
+            gameManager.GetComponent<GameManagerScript>().AddPoints(points);
             Destroy(this.gameObject);
         }
     }

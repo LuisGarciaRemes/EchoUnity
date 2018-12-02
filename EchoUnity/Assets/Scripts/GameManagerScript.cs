@@ -60,7 +60,7 @@ public class GameManagerScript : MonoBehaviour {
         CheckFruitSpawn();
     }
 
-    public void addPoints(int points)
+    public void AddPoints(int points)
     {
         audioSource.PlayOneShot(addPointsSound);
         score += points;       
@@ -78,9 +78,7 @@ public class GameManagerScript : MonoBehaviour {
     public void NextWave()
     {
         level++;
-        waveText.GetComponent<Text>().text = "Wave: " + level;
-        waveText.SetActive(true);
-        waveTextTimer = 0;
+        SetWaveDisplayOn();
     }
 
     private void DisplayWaveText()
@@ -154,7 +152,7 @@ public class GameManagerScript : MonoBehaviour {
             gameOverScreen.SetActive(false);
             startScreen.SetActive(false);
             score = 0;
-            level = 0;
+            level = 1;
             echo.GetComponent<PlayerScript>().restart();
             isLarger = false;
             SetScoreDisplayOff();
@@ -211,6 +209,7 @@ public class GameManagerScript : MonoBehaviour {
 
     private void SetWaveDisplayOn()
     {
+        waveText.GetComponent<Text>().text = "Wave: " + level;
         waveTextTimer = 0;
         waveText.SetActive(true);
     }
