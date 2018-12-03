@@ -245,12 +245,17 @@ Prefab:
     - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 2}
       propertyPath: waveWait
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 2}
       propertyPath: bossWait
-      value: 10
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114358157630678258, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 2}
+      propertyPath: pointsSpawnFruit
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3a5db1f510ef64792711acbc011e15, type: 2}

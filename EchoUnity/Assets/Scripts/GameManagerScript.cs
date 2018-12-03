@@ -26,6 +26,7 @@ public class GameManagerScript : MonoBehaviour {
     internal bool gameOver;
     private float waveTextTimer;
     private bool isLarger;
+    private int fruitPoints;
 
     internal bool die;
     internal bool paused;
@@ -43,6 +44,7 @@ public class GameManagerScript : MonoBehaviour {
         audioSource = gameObject.GetComponent<AudioSource>();
         level = 1;
         waveTextTimer = 0;
+        fruitPoints = pointsSpawnFruit;
 
         UpdateScore();
 
@@ -112,10 +114,10 @@ public class GameManagerScript : MonoBehaviour {
 
     private void CheckFruitSpawn()
     {
-        if(score % pointsSpawnFruit == 0 && score != 0)
+        if(score >= pointsSpawnFruit)
         {
             this.gameObject.GetComponent<SpawnerScript>().spawnLifeUp();
-            AddPoints(1);
+            pointsSpawnFruit += fruitPoints; 
         }
     }
 

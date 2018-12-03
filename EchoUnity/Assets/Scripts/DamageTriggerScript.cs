@@ -19,7 +19,8 @@ public class DamageTriggerScript : MonoBehaviour {
         }
         else if(collision.gameObject.CompareTag("Wave") && objectTakingDamage.CompareTag("Snake"))
         {
-
+            GameObject.Find("GameManager").GetComponent<SpawnerScript>().spawnNewWave = true;
+            Destroy(objectTakingDamage);
         }
     }
 }

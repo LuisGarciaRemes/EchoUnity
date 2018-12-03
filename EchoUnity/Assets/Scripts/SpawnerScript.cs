@@ -26,6 +26,7 @@ public class SpawnerScript : MonoBehaviour {
     private float waveTimer;
     private float bossTimer;
     private GameObject currBoss;
+    internal bool spawnNewWave;
 
 
     // Use this for initialization
@@ -34,6 +35,7 @@ public class SpawnerScript : MonoBehaviour {
         resetSpawner();
         currBoss = null;
         bossTimer = 0;
+        spawnNewWave = false;
     }
 
     // Update is called once per frame
@@ -60,20 +62,21 @@ public class SpawnerScript : MonoBehaviour {
             else
             {
                 if (currBoss == null)
-                {
+                {                  
                     if (bossTimer >= bossWait)
                     {
                         Vector3 obstaclePos = new Vector3(transform.position.x-1, transform.position.y, 0.0f);
                         currBoss = Instantiate(Snakes[0], obstaclePos, Quaternion.identity);
                         GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = false;
                         bossTimer = 0;
+                        gameObject.GetComponentInParent<AudioSource>().Pause();                       
                     }
                     {
                         bossTimer += Time.deltaTime;
                     }
                 }
 
-                if (bossTimer == 0)
+                if (spawnNewWave)
                 {
                     checkWave();
                 }
@@ -96,20 +99,20 @@ public class SpawnerScript : MonoBehaviour {
 
     private void checkWave()
     {
-        if(currBoss == null)
-        {
+       GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = true;
+       gameObject.GetComponentInParent<AudioSource>().UnPause();
+
             if(waveTimer >= waveWait)
             {
-                this.gameObject.GetComponent<GameManagerScript>().NextWave();
+                gameObject.GetComponent<GameManagerScript>().NextWave();
                 obstacleCounter = 0;
                 waveTimer = 0;
-                GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = true;
+                spawnNewWave = false;
             }
             else
             {
                 waveTimer += Time.deltaTime;
             }
-        }
     }
 
     public void spawnLifeUp()
@@ -122,6 +125,7 @@ public class SpawnerScript : MonoBehaviour {
     {
         waveTimer = 0;
         spawnTimer = 0;
+        bossTimer = 0;
         obstacleCounter = 0;
         spawnTime = Random.Range(minTime, maxTime);
     }

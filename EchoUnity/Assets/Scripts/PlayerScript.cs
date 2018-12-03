@@ -215,9 +215,13 @@ public class PlayerScript : MonoBehaviour {
     {
         if (numHearts < 5)
         {
-            audioSource.PlayOneShot(lifeUpSound);
-        }
         numHearts++;
+        }
+        else
+        {
+            gameManager.GetComponent<GameManagerScript>().AddPoints(50); 
+        }
+        audioSource.PlayOneShot(lifeUpSound);
     }
 
     private void GetInput()
