@@ -779,7 +779,7 @@ MonoBehaviour:
   maxY: 5
   minY: -5
   maxX: 10
-  minX: -10
+  minX: -9.5
   fireRate: 1.75
   wave: {fileID: 1777500426352964, guid: cc125a9a6bf6c41419f9ce7e0ae3b766, type: 2}
   sprites:

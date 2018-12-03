@@ -62,6 +62,7 @@ public class PlayerScript : MonoBehaviour {
             UpdateCollider();
             CheckFire();
             UpdateLifeBar();
+            DeathByBoundary();
             UpdateColor();
             CheckSpeed();
             audioSource.UnPause();
@@ -233,7 +234,7 @@ public class PlayerScript : MonoBehaviour {
         {
             yVel = speed;
         }
-        if (Input.GetKey("left") && playerRB.transform.position.x > minX)
+        if (Input.GetKey("left"))
         {
             xVel = -speed;
         }
@@ -266,6 +267,15 @@ public class PlayerScript : MonoBehaviour {
     public void PlaySplat()
     {
         audioSource.PlayOneShot(splatSound,vol*4);
+    }
+
+    private void DeathByBoundary()
+    {
+       if(playerRB.transform.position.x < minX)
+        {
+            TakeDamage();
+            numHearts = 0;
+        }
     }
  
 }
