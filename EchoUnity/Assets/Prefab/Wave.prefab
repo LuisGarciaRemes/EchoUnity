@@ -201,7 +201,7 @@ MonoBehaviour:
   oscillate: 0
   expand: 1
   amplitude: 0
-  speedX: 12
+  speedX: 14
   speedY: 0
   rateExpand: 0.1
   expandMax: 0.2

@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d632ef2dd72bcb4caee54098b49b77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLapse: 5
+  timeLapse: 3
   echoVol: 0.05
   echoSound: {fileID: 8300000, guid: b1be949ed9fb45b4f87fe49f86948bd8, type: 3}
 --- !u!114 &114197899780298092
@@ -247,11 +247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6886bda74f3110e4db1a218be8e4c5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oscillate: 0
+  oscillate: 1
   expand: 0
-  amplitude: 0
-  speedX: -5
-  speedY: 0
+  amplitude: 4
+  speedX: -8
+  speedY: 6
   rateExpand: 0
   expandMax: 0
 --- !u!114 &114401772227245224

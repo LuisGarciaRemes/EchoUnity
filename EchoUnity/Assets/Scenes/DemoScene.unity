@@ -242,6 +242,11 @@ Prefab:
       propertyPath: pauseTexts.Array.data[5]
       value: 
       objectReference: {fileID: 500157407}
+    - target: {fileID: 114163599722556604, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3a5db1f510ef64792711acbc011e15, type: 2}
   m_IsPrefabAsset: 0
@@ -283,6 +288,10 @@ Prefab:
     - target: {fileID: 4941821479707664, guid: 53b5dfcf9440147489768149573afbfe, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906994221949418, guid: 53b5dfcf9440147489768149573afbfe, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53b5dfcf9440147489768149573afbfe, type: 2}
@@ -627,9 +636,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1409523260261186, guid: 6851f9bb043c0764ca66797432d68314, type: 2}
+    - target: {fileID: 1630602952801004, guid: 6851f9bb043c0764ca66797432d68314, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6851f9bb043c0764ca66797432d68314, type: 2}

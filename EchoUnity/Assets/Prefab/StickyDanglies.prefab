@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d632ef2dd72bcb4caee54098b49b77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLapse: 5
+  timeLapse: 3
   echoVol: 0.05
   echoSound: {fileID: 8300000, guid: b1be949ed9fb45b4f87fe49f86948bd8, type: 3}
 --- !u!114 &114638706303312128
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562275689f53804488a798734c597d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nerfTime: 2
-  amountReduce: 2
+  nerfTime: 3
+  amountReduce: 3
 --- !u!212 &212559975225213876
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -165,7 +165,7 @@ MonoBehaviour:
   maxTime: 1.25
   minY: -5.5
   maxY: 5.5
-  obstaclesPerLevel: 20
+  obstaclesPerLevel: 40
   stalagmites:
   - {fileID: 1685415302821090, guid: 38ea3c5bb2fe60c458bc4facb4742fa7, type: 2}
   - {fileID: 1198071345701264, guid: 3cd39d930add8b449bf15944c852f0fb, type: 2}
@@ -201,9 +201,9 @@ MonoBehaviour:
   startScreen: {fileID: 0}
   gameOverScreen: {fileID: 0}
   waveText: {fileID: 0}
-  speedUpAmount: 0.2
-  waveTextTime: 3
-  pointsSpawnFruit: 500
+  speedUpAmount: 0.5
+  waveTextTime: 2
+  pointsSpawnFruit: 250
   gameOverTexts:
   - {fileID: 0}
   - {fileID: 0}

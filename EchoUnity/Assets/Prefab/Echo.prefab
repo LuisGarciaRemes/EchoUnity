@@ -775,12 +775,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1131fbdf7c9ca489abcd7e38b0e520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 6
   maxY: 5
   minY: -5
   maxX: 10
   minX: -10
-  fireRate: 2
+  fireRate: 1.75
   wave: {fileID: 1777500426352964, guid: cc125a9a6bf6c41419f9ce7e0ae3b766, type: 2}
   sprites:
   - {fileID: 21300000, guid: 0c07fedc26fe4404cb0ff8be0770ffb0, type: 3}
@@ -800,7 +800,7 @@ MonoBehaviour:
   - {fileID: 1669792978277114}
   fullHeart: {fileID: 21300000, guid: 33e241e6e9c11974c81001abacb090f9, type: 3}
   emptyHeart: {fileID: 21300000, guid: 0297b3852246f4244bfdfbbf368e935f, type: 3}
-  hurtTime: 2
+  hurtTime: 1.5
   hurtSound: {fileID: 8300000, guid: b0ce66456571f0e4ba16f6be279a691e, type: 3}
   tangleSound: {fileID: 8300000, guid: 127d59b2119951c4ca83c2abd5367f91, type: 3}
   lifeUpSound: {fileID: 8300000, guid: 8f00be731ac540a4bbab2431e207bea8, type: 3}

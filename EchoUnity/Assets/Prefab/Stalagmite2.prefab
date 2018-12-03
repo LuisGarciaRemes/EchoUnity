@@ -248,7 +248,7 @@ MonoBehaviour:
   oscillate: 0
   expand: 0
   amplitude: 0
-  speedX: -6
+  speedX: -7
   speedY: 0
   rateExpand: 0
   expandMax: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d632ef2dd72bcb4caee54098b49b77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLapse: 5
+  timeLapse: 2
   echoVol: 0.05
   echoSound: {fileID: 8300000, guid: b1be949ed9fb45b4f87fe49f86948bd8, type: 3}
 --- !u!114 &114483273562905434
