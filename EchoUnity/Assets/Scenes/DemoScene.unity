@@ -125,6 +125,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 2}
+      propertyPath: Snakes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4187078338175192, guid: 3d3a5db1f510ef64792711acbc011e15, type: 2}
       propertyPath: m_LocalPosition.x
       value: 11
@@ -246,6 +251,22 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 2}
+      propertyPath: Snakes.Array.data[0]
+      value: 
+      objectReference: {fileID: 1250912136837972, guid: b57e528ffcb2953449406725eaf59a9c,
+        type: 2}
+    - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 2}
+      propertyPath: bossWait
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114358157630678258, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 2}
+      propertyPath: pointsSpawnFruit
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3a5db1f510ef64792711acbc011e15, type: 2}

@@ -14,14 +14,17 @@ public class SpawnerScript : MonoBehaviour {
     public GameObject[] floatingObstacles;
     public GameObject firefly;
     public GameObject fruit;
+    public GameObject[] Snakes;
     public float stalagmiteMax;
     public float stalactiteMax;
     public float waveWait;
+    public float bossWait;
 
     private int obstacleCounter;
     private float spawnTimer;
     private float spawnTime;
     private float waveTimer;
+    private float bossTimer;
     private GameObject currBoss;
 
 
@@ -30,6 +33,7 @@ public class SpawnerScript : MonoBehaviour {
     {
         resetSpawner();
         currBoss = null;
+        bossTimer = 0;
     }
 
     // Update is called once per frame
@@ -55,7 +59,24 @@ public class SpawnerScript : MonoBehaviour {
             }
             else
             {
-                checkWave();
+                if (currBoss == null)
+                {
+                    if (bossTimer >= bossWait)
+                    {
+                        Vector3 obstaclePos = new Vector3(transform.position.x-1, transform.position.y, 0.0f);
+                        currBoss = Instantiate(Snakes[0], obstaclePos, Quaternion.identity);
+                        GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = false;
+                        bossTimer = 0;
+                    }
+                    {
+                        bossTimer += Time.deltaTime;
+                    }
+                }
+
+                if (bossTimer == 0)
+                {
+                    checkWave();
+                }
             }
         }
     }
@@ -79,9 +100,9 @@ public class SpawnerScript : MonoBehaviour {
         {
             if(waveTimer >= waveWait)
             {
-                obstacleCounter = 0;
-                waveTimer = 0;
                 this.gameObject.GetComponent<GameManagerScript>().NextWave();
+                obstacleCounter = 0;
+                waveTimer = 0;              
             }
             else
             {
