@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 95750805272053746}
   - component: {fileID: 50618089060702174}
   - component: {fileID: 114971523165223272}
+  - component: {fileID: 114364009350457740}
   m_Layer: 0
   m_Name: BossSnake_green
   m_TagString: Snake
@@ -78,6 +79,7 @@ GameObject:
   - component: {fileID: 70773383617512142}
   - component: {fileID: 82417874818505476}
   - component: {fileID: 114378269907408546}
+  - component: {fileID: 114882112862494314}
   m_Layer: 0
   m_Name: snake_jawAsset 10
   m_TagString: Untagged
@@ -508,7 +510,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1250912136837972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.03, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4415945170324106}
@@ -984,12 +986,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 31c0e95a4e51acc499abace9977583f6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -1514,7 +1516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0194794
+  m_Length: 1.0194795
   m_ChildTransform: {fileID: 4449513820553540}
   m_AttachedIK: {fileID: 0}
 --- !u!114 &114101671238674074
@@ -1606,7 +1608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.94835204
+  m_Length: 0.94835216
   m_ChildTransform: {fileID: 4628857214097302}
   m_AttachedIK: {fileID: 0}
 --- !u!114 &114247489909379976
@@ -1676,6 +1678,17 @@ MonoBehaviour:
   m_SortingOrder: 2
   m_BoneTransforms:
   - {fileID: 4942918480928710}
+--- !u!114 &114364009350457740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1250912136837972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbd9150b3511214fb543da51c7e70d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114378269907408546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1779,7 +1792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0371691
+  m_Length: 1.0371689
   m_ChildTransform: {fileID: 4334981884114394}
   m_AttachedIK: {fileID: 0}
 --- !u!114 &114841540134037280
@@ -1816,6 +1829,20 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4334981884114394}
   - {fileID: 4449513820553540}
+--- !u!114 &114882112862494314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309247544147944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba5fb506b6648e489a2d4bb49d143a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeedMin: 1
+  attackSpeedMax: 2
+  venom: {fileID: 1243251251375920, guid: 47229f9ec161a1c44b47c2e50f234a4f, type: 2}
 --- !u!114 &114927464187285476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1867,9 +1894,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oscillate: 1
   expand: 0
-  amplitude: 8
+  amplitude: 7
   speedX: 0
-  speedY: 2
+  speedY: 3
   rateExpand: 0
   expandMax: 0
 --- !u!137 &137314434416533250

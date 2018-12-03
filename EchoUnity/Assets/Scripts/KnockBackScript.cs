@@ -21,9 +21,7 @@ public class KnockBackScript : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
         {
-            if (echo.GetComponent<PlayerScript>().canTakeDamage) {
                 audioSource.Play();
-            }
         }
     }
 

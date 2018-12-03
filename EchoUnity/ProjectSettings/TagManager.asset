@@ -10,6 +10,7 @@ TagManager:
   - Rock
   - Sticky
   - Snake
+  - Venom
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour {
     public AudioClip hurtSound;
     public AudioClip tangleSound;
     public AudioClip lifeUpSound;
+    public AudioClip splatSound;
     public float vol;
 
     private GameObject gameManager;
@@ -186,7 +187,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if(canBeNerfed)
         {
-            audioSource.PlayOneShot(tangleSound,vol);
+            audioSource.PlayOneShot(tangleSound,vol*4);
             nerfTimer = nerfTime;
             speed -= amountReduce;
             canBeNerfed = false;
@@ -260,6 +261,11 @@ public class PlayerScript : MonoBehaviour {
         speed = orgSpeed;
         canTakeDamage = true;
         canFire = true;
+    }
+
+    public void PlaySplat()
+    {
+        audioSource.PlayOneShot(splatSound,vol*4);
     }
  
 }

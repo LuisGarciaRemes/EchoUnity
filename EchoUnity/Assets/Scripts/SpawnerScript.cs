@@ -102,7 +102,8 @@ public class SpawnerScript : MonoBehaviour {
             {
                 this.gameObject.GetComponent<GameManagerScript>().NextWave();
                 obstacleCounter = 0;
-                waveTimer = 0;              
+                waveTimer = 0;
+                GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = true;
             }
             else
             {

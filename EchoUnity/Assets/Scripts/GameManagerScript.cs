@@ -115,6 +115,7 @@ public class GameManagerScript : MonoBehaviour {
         if(score % pointsSpawnFruit == 0 && score != 0)
         {
             this.gameObject.GetComponent<SpawnerScript>().spawnLifeUp();
+            AddPoints(1);
         }
     }
 
