@@ -203,7 +203,7 @@ public class GameManagerScript : MonoBehaviour {
             die = false;
         }
         // Enter tutorial mode
-        if (Input.GetKeyDown(KeyCode.F1) && mode == GMode.Default)
+        if (Input.GetButtonDown("tutorialButton") && mode == GMode.Default)
         {
             SwitchMode(GMode.Tutorial);
             startScreen.SetActive(false);
@@ -215,7 +215,7 @@ public class GameManagerScript : MonoBehaviour {
             isLarger = false;
             waveText.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Return) && gameObject.GetComponent<GetPlayerNameScript>().enabled)
+        if (Input.GetButtonDown("Start") && gameObject.GetComponent<GetPlayerNameScript>().enabled)
         {
             SwitchMode(GMode.Normal);
             audioSource.PlayOneShot(startSound);
@@ -224,7 +224,7 @@ public class GameManagerScript : MonoBehaviour {
             isLarger = false;
             UpdateScore();
         }
-        else if (Input.GetKeyDown(KeyCode.Return) && !gameOver)
+        else if (Input.GetButtonDown("Start") && !gameOver)
         {
             SwitchMode(GMode.Normal);
             menuText.text = "Press <Enter> To Play	, <R> To Restart	,<S> To See HighScores";
@@ -234,7 +234,7 @@ public class GameManagerScript : MonoBehaviour {
             SetScoreDisplayOff();
             Time.timeScale = paused ? 0 : 1;
         }
-        else if (Input.GetKeyDown(KeyCode.R) && paused)
+        else if (Input.GetButtonDown("Restart") && paused)
         {
             SwitchMode(GMode.Normal);
             Time.timeScale = 1;
@@ -253,7 +253,7 @@ public class GameManagerScript : MonoBehaviour {
             SetWaveDisplayOn();
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && paused)
+        if (Input.GetButtonDown("HighScore") && paused)
         {
             audioSource.PlayOneShot(startSound);
             ToggleScoreDisplay();

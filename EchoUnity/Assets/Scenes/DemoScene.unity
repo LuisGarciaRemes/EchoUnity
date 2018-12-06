@@ -647,6 +647,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114713780839173982, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 2}
+      propertyPath: m_Text
+      value: <Start> Play ,<B> HighScores, <Right Joystick> Tutorial
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6851f9bb043c0764ca66797432d68314, type: 2}
   m_IsPrefabAsset: 0
@@ -766,6 +771,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057028431094090, guid: 065fde453cbba504a99e93fc7adafdf3,
+        type: 2}
+      propertyPath: m_Text
+      value: YOU MADE IT!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 065fde453cbba504a99e93fc7adafdf3, type: 2}

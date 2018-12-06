@@ -236,29 +236,19 @@ public class PlayerScript : MonoBehaviour {
         float xVel = 0.0f;
         float yVel = 0.0f;
 
-        if (Input.GetKey("down") && playerRB.transform.position.y > minY)
-        {
-            yVel = -speed;
-        }
+        yVel = Input.GetAxis("Vertical") * -speed;
 
-        if (Input.GetKey("up") && playerRB.transform.position.y < maxY)
-        {
-            yVel = speed;
-        }
-        if (Input.GetKey("left"))
-        {
-            xVel = -speed;
-        }
-        if (Input.GetKey("right") && playerRB.transform.position.x < maxX)
-        {
-            xVel = speed;
-        }
+        xVel = Input.GetAxis("Horizontal") * speed;
 
-        if(Input.GetKey("space") && canFire)
+        if (Input.GetButtonDown("Echo"))
         {
-            Instantiate(wave,new Vector3(playerRB.position.x + wave.transform.position.x,playerRB.position.y + wave.transform.position.y, 0.0f),Quaternion.identity);
-            fireTimer = fireRate;
-            canFire = false;
+            if (canFire)
+            {
+                Instantiate(wave, new Vector3(playerRB.position.x + wave.transform.position.x, playerRB.position.y + wave.transform.position.y, 0.0f), Quaternion.identity);
+                fireTimer = fireRate;
+                canFire = false;
+            }
+
         }
 
         playerRB.transform.position += new Vector3(xVel * NORMALIZE, yVel * NORMALIZE, 0.0f);

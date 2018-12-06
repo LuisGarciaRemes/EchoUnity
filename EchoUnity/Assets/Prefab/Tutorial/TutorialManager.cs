@@ -188,16 +188,16 @@ public class TutorialManager : MonoBehaviour {
 		// Tutorial Procedural Controll
         if(_stage == TutorialStage.MovePause)
         {
-            if(Input.GetKey("up")||
-                Input.GetKey("down")||
-                Input.GetKey("left")||
-                Input.GetKey("right"))
+            if(Input.GetAxis("Vertical") > 0||
+               Input.GetAxis("Vertical") < 0 ||
+                Input.GetAxis("Horizontal") > 0||
+                Input.GetAxis("Horizontal") < 0)
             {
                 NextStage();
             }
         }else if(_stage == TutorialStage.MoveTry)
         {
-            if (Input.GetKey("space"))
+            if (Input.GetButtonDown("Echo"))
             {
                 StartCoroutine("EndMoveTry");
             }
