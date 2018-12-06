@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
+    // singleton instance
+    public static PlayerScript instance;
    
     public float speed;
     public float maxY;
@@ -41,6 +43,11 @@ public class PlayerScript : MonoBehaviour {
     internal bool canTakeDamage;
 
     // Initialized variables
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start () {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
