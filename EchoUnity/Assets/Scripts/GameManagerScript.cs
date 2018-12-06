@@ -62,10 +62,10 @@ public class GameManagerScript : MonoBehaviour {
         waveTextTimer = 0;
         fruitPoints = pointsSpawnFruit;
 
-        UpdateScore();
 
-        //HighScoreManager._instance.ClearLeaderBoard();
+        HighScoreManager._instance.ClearLeaderBoard();
         HighScoreManager._instance.SaveHighScore("      ", 0);
+        UpdateScore();
 
         Time.timeScale = 0;
 
@@ -125,12 +125,6 @@ public class GameManagerScript : MonoBehaviour {
         level = 1;
         waveTextTimer = 0;
         fruitPoints = pointsSpawnFruit;
-
-        UpdateScore();
-
-        //HighScoreManager._instance.ClearLeaderBoard();
-        HighScoreManager._instance.SaveHighScore("      ", 0);
-
         Time.timeScale = 0;
 
         mode = GMode.Default;
@@ -222,7 +216,6 @@ public class GameManagerScript : MonoBehaviour {
             HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit,score);
             gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
             isLarger = false;
-            UpdateScore();
         }
         else if (Input.GetButtonDown("Start") && !gameOver)
         {
@@ -236,6 +229,7 @@ public class GameManagerScript : MonoBehaviour {
         }
         else if (Input.GetButtonDown("Restart") && paused)
         {
+            UpdateScore();
             SwitchMode(GMode.Normal);
             Time.timeScale = 1;
             die = true;
@@ -255,6 +249,7 @@ public class GameManagerScript : MonoBehaviour {
 
         if (Input.GetButtonDown("HighScore") && paused)
         {
+            UpdateScore();
             audioSource.PlayOneShot(startSound);
             ToggleScoreDisplay();
         }
@@ -271,6 +266,7 @@ public class GameManagerScript : MonoBehaviour {
         foreach (Scores highScore in HighScoreManager._instance.GetHighScore())
         {        
             gameOverTexts[i].GetComponent<Text>().text = (i+1) + ". " + highScore.name + " : " + highScore.score;
+            pauseTexts[i].GetComponent<Text>().text = (i + 1) + ". " + highScore.name + " : " + highScore.score;
             i++;
         }
     }
