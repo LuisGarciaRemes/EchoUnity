@@ -38,6 +38,10 @@ public class EchoLocateScript : MonoBehaviour {
             audioSource.PlayOneShot(echoSound,echoVol);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
+        else if(other.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
     }
 
 }
