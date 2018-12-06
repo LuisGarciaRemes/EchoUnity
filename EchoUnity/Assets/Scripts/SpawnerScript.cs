@@ -19,6 +19,7 @@ public class SpawnerScript : MonoBehaviour {
     public float stalactiteMax;
     public float waveWait;
     public float bossWait;
+    public float bossOffset;
 
     private int obstacleCounter;
     private float spawnTimer;
@@ -65,7 +66,7 @@ public class SpawnerScript : MonoBehaviour {
                 {                  
                     if (bossTimer >= bossWait)
                     {
-                        Vector3 obstaclePos = new Vector3(transform.position.x-1, transform.position.y, 0.0f);
+                        Vector3 obstaclePos = new Vector3(transform.position.x+bossOffset, transform.position.y, 0.0f);
                         currBoss = Instantiate(Snakes[0], obstaclePos, Quaternion.identity);
                         GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = false;
                         bossTimer = 0;

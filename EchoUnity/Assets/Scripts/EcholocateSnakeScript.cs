@@ -7,6 +7,7 @@ public class EcholocateSnakeScript : MonoBehaviour {
     public float timeLapse;
     public float echoVol;
     public AudioClip echoSound;
+    public Anima2D.SpriteMeshInstance spriteMesh;
 
     private Color color;
     private AudioSource audioSource;
@@ -15,7 +16,7 @@ public class EcholocateSnakeScript : MonoBehaviour {
     //Makes gameObject invisible
     void Start()
     {
-        gameObject.GetComponent<Anima2D.SpriteMeshInstance>().color = new Color(1, 1, 1, 0);
+        spriteMesh.color = new Color(1, 1, 1, 0);
         audioSource = gameObject.GetComponent<AudioSource>();
         gameManager = GameObject.Find("GameManager");
     }
@@ -24,11 +25,11 @@ public class EcholocateSnakeScript : MonoBehaviour {
     void Update()
     {
 
-        if (gameObject.GetComponent<Anima2D.SpriteMeshInstance>().color.a > 0 && !gameManager.GetComponent<GameManagerScript>().paused)
+        if (spriteMesh.color.a > 0 && !gameManager.GetComponent<GameManagerScript>().paused)
         {
-            color = gameObject.GetComponent<Anima2D.SpriteMeshInstance>().color;
+            color = spriteMesh.color;
             color.a -= (1 / (timeLapse)) * Time.deltaTime;
-            gameObject.GetComponent<Anima2D.SpriteMeshInstance>().color = color;
+            spriteMesh.color = color;
         }
     }
 
@@ -38,7 +39,7 @@ public class EcholocateSnakeScript : MonoBehaviour {
         if (other.CompareTag("Wave") && !gameManager.GetComponent<GameManagerScript>().paused)
         {
             audioSource.PlayOneShot(echoSound, echoVol);
-            gameObject.GetComponent<Anima2D.SpriteMeshInstance>().color = new Color(1, 1, 1, 1);
+            spriteMesh.color = new Color(1, 1, 1, 1);
         }
     }
 

@@ -63,7 +63,7 @@ public class GameManagerScript : MonoBehaviour {
         fruitPoints = pointsSpawnFruit;
 
 
-        HighScoreManager._instance.ClearLeaderBoard();
+        //HighScoreManager._instance.ClearLeaderBoard();
         HighScoreManager._instance.SaveHighScore("      ", 0);
         UpdateScore();
 

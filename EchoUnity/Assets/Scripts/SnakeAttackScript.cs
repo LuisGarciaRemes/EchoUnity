@@ -7,6 +7,9 @@ public class SnakeAttackScript : MonoBehaviour {
     public float attackSpeedMin;
     public float attackSpeedMax;
     public GameObject venom;
+    public GameObject snakeHead;
+    public float acidOffset;
+    public Animator anim;
 
     private float attackTimer;
     private float attackSpeed;
@@ -24,10 +27,7 @@ public class SnakeAttackScript : MonoBehaviour {
         if (!GameObject.Find("GameManager").GetComponent<GameManagerScript>().gameOver) {
             if (attackTimer >= attackSpeed)
             {
-                Instantiate(venom, new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y, 0.0f), Quaternion.identity);
-                attackTimer = 0;
-                attackSpeed = Random.Range(attackSpeedMin, attackSpeedMax);
-                audioSource.Play();
+                anim.SetBool("isAttacking",true);
             }
             else
             {
@@ -35,4 +35,13 @@ public class SnakeAttackScript : MonoBehaviour {
             }
         }
 	}
+
+    public void shootAcid()
+    {
+        audioSource.Play();
+        Instantiate(venom, new Vector3(snakeHead.transform.position.x + acidOffset, snakeHead.transform.position.y, 0.0f), Quaternion.identity);
+        attackTimer = 0;
+        attackSpeed = Random.Range(attackSpeedMin, attackSpeedMax);
+        anim.SetBool("isAttacking", false);
+    }
 }

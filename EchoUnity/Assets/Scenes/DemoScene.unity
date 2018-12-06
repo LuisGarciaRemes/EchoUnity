@@ -242,6 +242,11 @@ Prefab:
       propertyPath: pauseTexts.Array.data[5]
       value: 
       objectReference: {fileID: 500157407}
+    - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 2}
+      propertyPath: bossOffset
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3a5db1f510ef64792711acbc011e15, type: 2}
   m_IsPrefabAsset: 0
@@ -476,7 +481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225868675 stripped
 GameObject:
@@ -687,7 +692,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032819643978836, guid: 0d0d51763e240964fbe0314cddfd9fea, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d0d51763e240964fbe0314cddfd9fea, type: 2}
