@@ -242,21 +242,6 @@ Prefab:
       propertyPath: pauseTexts.Array.data[5]
       value: 
       objectReference: {fileID: 500157407}
-    - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
-        type: 2}
-      propertyPath: waveWait
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
-        type: 2}
-      propertyPath: bossWait
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114358157630678258, guid: 3d3a5db1f510ef64792711acbc011e15,
-        type: 2}
-      propertyPath: pointsSpawnFruit
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3a5db1f510ef64792711acbc011e15, type: 2}
   m_IsPrefabAsset: 0
@@ -542,11 +527,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114216763081124362, guid: 542809b0befaf9047b37327aae4e865e,
-        type: 2}
-      propertyPath: speed
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542809b0befaf9047b37327aae4e865e, type: 2}
   m_IsPrefabAsset: 0
@@ -647,11 +627,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114713780839173982, guid: 6851f9bb043c0764ca66797432d68314,
-        type: 2}
-      propertyPath: m_Text
-      value: <Start> Play ,<B> HighScores, <Right Joystick> Tutorial
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6851f9bb043c0764ca66797432d68314, type: 2}
   m_IsPrefabAsset: 0
@@ -670,116 +645,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1469030981806720, guid: 6851f9bb043c0764ca66797432d68314,
     type: 2}
   m_PrefabInternal: {fileID: 1544532014}
---- !u!1001 &1919696228
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224606203721884262, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114057028431094090, guid: 065fde453cbba504a99e93fc7adafdf3,
-        type: 2}
-      propertyPath: m_Text
-      value: YOU MADE IT!
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 065fde453cbba504a99e93fc7adafdf3, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &2070397538 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1380618418977552, guid: 6851f9bb043c0764ca66797432d68314,

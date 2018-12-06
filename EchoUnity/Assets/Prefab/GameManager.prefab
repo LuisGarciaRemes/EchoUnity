@@ -183,7 +183,7 @@ MonoBehaviour:
   - {fileID: 1250912136837972, guid: b57e528ffcb2953449406725eaf59a9c, type: 2}
   stalagmiteMax: -3.5
   stalactiteMax: 3.5
-  waveWait: 8
+  waveWait: 6
   bossWait: 8
 --- !u!114 &114358157630678258
 MonoBehaviour:
@@ -206,7 +206,7 @@ MonoBehaviour:
   waveText: {fileID: 0}
   speedUpAmount: 0.5
   waveTextTime: 2
-  pointsSpawnFruit: 200
+  pointsSpawnFruit: 100
   gameOverTexts:
   - {fileID: 0}
   - {fileID: 0}

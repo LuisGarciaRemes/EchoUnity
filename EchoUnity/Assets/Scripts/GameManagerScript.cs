@@ -227,7 +227,7 @@ public class GameManagerScript : MonoBehaviour {
         else if (Input.GetButtonDown("Start") && !gameOver)
         {
             SwitchMode(GMode.Normal);
-            menuText.text = "Press <Enter> To Play	, <R> To Restart	,<S> To See HighScores";
+            menuText.text = "Press <Start> Play ,<X> Restart, <B> HighScores";
             paused = !paused;
             startScreen.SetActive(paused);
             audioSource.PlayOneShot(startSound);          
