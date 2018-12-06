@@ -33,14 +33,17 @@ public class EchoLocateScript : MonoBehaviour {
     //Makes the gameObject visible when hit by Wave
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Wave") && !gameManager.GetComponent<GameManagerScript>().paused)
+        if (other.gameObject != null)
         {
-            audioSource.PlayOneShot(echoSound,echoVol);
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        }
-        else if(other.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            if (other.gameObject.CompareTag("Wave") && !gameManager.GetComponent<GameManagerScript>().paused)
+            {
+                audioSource.PlayOneShot(echoSound, echoVol);
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
+            else if (other.gameObject.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
         }
     }
 
