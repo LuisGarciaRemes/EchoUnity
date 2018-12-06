@@ -112,7 +112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1446025301637624
 GameObject:
   m_ObjectHideFlags: 1
@@ -971,7 +971,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Press <Enter> To Play\t,<S> To See HighScores"
+  m_Text: <Enter> Play ,<S> HighScores, <F1> Tutorial
 --- !u!114 &114738502316015226
 MonoBehaviour:
   m_ObjectHideFlags: 1

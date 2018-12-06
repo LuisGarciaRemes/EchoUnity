@@ -7,6 +7,7 @@ Assets/AssetStoreTools*
 
 # Local Assets
 _LocalAssets
+_LocalAssets.meta
 
 # Visual Studio cache directory
 .vs/

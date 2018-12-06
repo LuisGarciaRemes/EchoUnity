@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour {
+    // singleton instance
+    public static GameManagerScript instance;
+
+    // Data classes
+    enum GMode {
+        Normal,
+        Tutorial,
+        Default
+    }
 
     public Text menuText;
     public Text scoreText;
@@ -19,6 +28,8 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject[] gameOverTexts;
     public GameObject[] pauseTexts;
 
+    private GMode mode;
+
     private GameObject echo;
     private int score;
     private float timerPointsPerSecond;
@@ -33,6 +44,11 @@ public class GameManagerScript : MonoBehaviour {
     internal int level;
 
     // Use this for initialization
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start () {
         isLarger = false;
         echo = GameObject.Find("Echo");
@@ -52,6 +68,8 @@ public class GameManagerScript : MonoBehaviour {
         HighScoreManager._instance.SaveHighScore("      ", 0);
 
         Time.timeScale = 0;
+
+        mode = GMode.Default;
     }
 	
 	// Update is called once per frame
@@ -62,6 +80,7 @@ public class GameManagerScript : MonoBehaviour {
         CheckFruitSpawn();
     }
 
+    // public functions
     public void AddPoints(int points)
     {
         audioSource.PlayOneShot(addPointsSound);
@@ -81,6 +100,62 @@ public class GameManagerScript : MonoBehaviour {
     {
         level++;
         SetWaveDisplayOn();
+    }
+
+    public void NoUIPause()
+    {
+        paused = true;
+    }
+
+    public void NoUIResume()
+    {
+        paused = false;
+    }
+
+    public void ToStartScreen()
+    {
+        isLarger = false;
+        echo = GameObject.Find("Echo");
+        startScreen.SetActive(true);
+        gameOver = false;
+        paused = true;
+        timerPointsPerSecond = 0;
+        score = 0;
+        audioSource = gameObject.GetComponent<AudioSource>();
+        level = 1;
+        waveTextTimer = 0;
+        fruitPoints = pointsSpawnFruit;
+
+        UpdateScore();
+
+        //HighScoreManager._instance.ClearLeaderBoard();
+        HighScoreManager._instance.SaveHighScore("      ", 0);
+
+        Time.timeScale = 0;
+
+        mode = GMode.Default;
+    }
+
+    // private functions
+    void SwitchMode(GMode m)
+    {
+        var spawner = GetComponent<SpawnerScript>();
+        switch (m) {
+            case GMode.Normal:
+                mode = m;
+                if (spawner)
+                    spawner.enabled = true;
+                TutorialManager.DisableTutorial();
+                break;
+            case GMode.Tutorial:
+                mode = m;
+                if (spawner)
+                    spawner.enabled = false;
+                TutorialManager.StartTutorial();
+                break;
+            default:
+                break;
+        }
     }
 
     private void DisplayWaveText()
@@ -127,9 +202,22 @@ public class GameManagerScript : MonoBehaviour {
         {
             die = false;
         }
-
+        // Enter tutorial mode
+        if (Input.GetKeyDown(KeyCode.F1) && mode == GMode.Default)
+        {
+            SwitchMode(GMode.Tutorial);
+            startScreen.SetActive(false);
+            audioSource.PlayOneShot(startSound);
+            HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
+            gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
+            paused = false;
+            gameOver = false;
+            isLarger = false;
+            waveText.SetActive(false);
+        }
         if (Input.GetKeyDown(KeyCode.Return) && gameObject.GetComponent<GetPlayerNameScript>().enabled)
         {
+            SwitchMode(GMode.Normal);
             audioSource.PlayOneShot(startSound);
             HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit,score);
             gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
@@ -138,6 +226,7 @@ public class GameManagerScript : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.Return) && !gameOver)
         {
+            SwitchMode(GMode.Normal);
             menuText.text = "Press <Enter> To Play	, <R> To Restart	,<S> To See HighScores";
             paused = !paused;
             startScreen.SetActive(paused);
@@ -147,6 +236,7 @@ public class GameManagerScript : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.R) && paused)
         {
+            SwitchMode(GMode.Normal);
             Time.timeScale = 1;
             die = true;
             audioSource.PlayOneShot(startSound);
