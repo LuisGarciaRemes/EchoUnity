@@ -242,11 +242,6 @@ Prefab:
       propertyPath: pauseTexts.Array.data[5]
       value: 
       objectReference: {fileID: 500157407}
-    - target: {fileID: 114261838710550434, guid: 3d3a5db1f510ef64792711acbc011e15,
-        type: 2}
-      propertyPath: bossOffset
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3a5db1f510ef64792711acbc011e15, type: 2}
   m_IsPrefabAsset: 0

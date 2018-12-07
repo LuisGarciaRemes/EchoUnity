@@ -33,10 +33,16 @@ public class SimpleMovementScript : MonoBehaviour {
             if (oscillate)
             {
                 RB.transform.position += new Vector3(NORMALIZE * speedX, NORMALIZE * speedY, 0.0f);
+
+            if (RB.transform.position.y >= orgPos.y + amplitude / 2 || RB.transform.position.y <= orgPos.y - amplitude / 2)
+            {
+                speedY *= -1;
+            }
+
             }
             else
             {
-                RB.transform.position += new Vector3(NORMALIZE * speedX, 0.0f, 0.0f);
+                RB.transform.position += new Vector3(NORMALIZE * speedX, NORMALIZE * speedY, 0.0f);
             }
 
             if (expand && RB.transform.localScale.x < expandMax)
@@ -44,10 +50,6 @@ public class SimpleMovementScript : MonoBehaviour {
                 RB.transform.localScale += new Vector3(rateExpand * NORMALIZE, rateExpand * NORMALIZE, 0.0f);
             }
 
-            if (RB.transform.position.y >= orgPos.y + amplitude / 2 || RB.transform.position.y <= orgPos.y - amplitude / 2)
-            {
-                speedY *= -1;
-            }
         }
 
         if (this.gameObject.CompareTag("Rock") || this.gameObject.CompareTag("Sticky"))

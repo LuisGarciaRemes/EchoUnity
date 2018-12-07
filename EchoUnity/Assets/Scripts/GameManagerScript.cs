@@ -27,6 +27,7 @@ public class GameManagerScript : MonoBehaviour {
     public int pointsSpawnFruit;
     public GameObject[] gameOverTexts;
     public GameObject[] pauseTexts;
+    public AudioClip loopBG;
 
     private GMode mode;
 
@@ -78,6 +79,12 @@ public class GameManagerScript : MonoBehaviour {
         UpdatePoints();
         DisplayWaveText();
         CheckFruitSpawn();
+        if(audioSource.isPlaying == false && gameObject.GetComponent<SpawnerScript>().currBoss == null)
+        {
+            audioSource.clip = loopBG;
+            audioSource.Play();
+            audioSource.loop = true;
+        }
     }
 
     // public functions

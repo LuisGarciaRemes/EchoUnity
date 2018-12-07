@@ -56,7 +56,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -185,6 +185,8 @@ MonoBehaviour:
   stalactiteMax: 3.5
   waveWait: 6
   bossWait: 8
+  bossOffset: 5
+  bossDeath: {fileID: 8300000, guid: f5c06d824881dac4ab8a14ecba84883f, type: 3}
 --- !u!114 &114358157630678258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,3 +223,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  loopBG: {fileID: 8300000, guid: 6b17b8a025d8a2048b14575bf9c33533, type: 3}
