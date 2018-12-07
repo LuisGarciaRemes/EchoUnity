@@ -627,6 +627,29 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1409523260261186, guid: 6851f9bb043c0764ca66797432d68314, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114308396101017038, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Use left joystick to move and press A to use echo
+
+        Echo reveals hidden objects'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114934690351852460, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 2}
+      propertyPath: m_Text
+      value: 'AvoidTutorial: Rocks hurt you and blue tangles slow your movement'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114168170315758306, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Try to catch extra items
+
+        Fireflies = extra points and fruit = health (Max. 5)'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6851f9bb043c0764ca66797432d68314, type: 2}
   m_IsPrefabAsset: 0
