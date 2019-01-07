@@ -13,6 +13,7 @@ public class SnakeHealthScript : MonoBehaviour {
     public float hurtTime;
     public GameObject snakeHeadSprite;
     public float xPos;
+    public int points;
 
     private float numHearts;
     private const float MAXLIVES = 5;
@@ -22,6 +23,7 @@ public class SnakeHealthScript : MonoBehaviour {
 
     private void Start()
     {
+        GameObject.Find("GameManager").GetComponent<GameManagerScript>().timerPoints = false;
         isHurt = false;
         hurtTimer = 0;
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -75,7 +77,9 @@ public class SnakeHealthScript : MonoBehaviour {
 
         if (numHearts <= 0)
         {
+            GameObject.Find("GameManager").GetComponent<GameManagerScript>().AddPoints(points);
             GameObject.Find("GameManager").GetComponent<SpawnerScript>().spawnNewWave = true;
+            GameObject.Find("GameManager").GetComponent<GameManagerScript>().timerPoints = true;
             Destroy(gameObject);
         }
     }

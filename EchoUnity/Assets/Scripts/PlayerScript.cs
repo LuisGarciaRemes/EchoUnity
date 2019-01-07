@@ -252,6 +252,22 @@ public class PlayerScript : MonoBehaviour {
         }
 
         playerRB.transform.position += new Vector3(xVel * NORMALIZE, yVel * NORMALIZE, 0.0f);
+
+        if(playerRB.position.x > maxX)
+        {
+            playerRB.position = new Vector3(maxX,playerRB.position.y,0.0f);
+        }
+
+        if (playerRB.position.y < minY)
+        {
+            playerRB.position = new Vector3(playerRB.position.x,minY, 0.0f);
+        }
+
+        if (playerRB.position.y > maxY)
+        {
+            playerRB.position = new Vector3(playerRB.position.x, maxY, 0.0f);
+        }
+
     }
 
     public void restart()

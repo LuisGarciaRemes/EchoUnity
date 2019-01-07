@@ -245,6 +245,7 @@ public class GameManagerScript : MonoBehaviour {
             gameOver = false;
             gameOverScreen.SetActive(false);
             startScreen.SetActive(false);
+            pointsSpawnFruit = fruitPoints;
             score = 0;
             level = 1;
             echo.GetComponent<PlayerScript>().restart();

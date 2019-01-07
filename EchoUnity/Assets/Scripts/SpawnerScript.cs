@@ -110,6 +110,7 @@ public class SpawnerScript : MonoBehaviour {
             {
                 gameObject.GetComponent<GameManagerScript>().NextWave();
                 obstacleCounter = 0;
+                obstaclesPerLevel += 10 * GameObject.Find("GameManager").GetComponent<GameManagerScript>().level;
                 waveTimer = 0;
                 spawnNewWave = false;
             }

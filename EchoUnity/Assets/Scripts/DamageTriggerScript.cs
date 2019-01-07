@@ -12,7 +12,7 @@ public class DamageTriggerScript : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.CompareTag("Rock") || collision.gameObject.CompareTag("Venom")))
+        if ((collision.gameObject.CompareTag("Rock") || collision.gameObject.CompareTag("Venom")|| collision.gameObject.CompareTag("Snake")))
         {
             if(collision.gameObject.CompareTag("Venom") && echo.GetComponent<PlayerScript>().canTakeDamage)
             {
