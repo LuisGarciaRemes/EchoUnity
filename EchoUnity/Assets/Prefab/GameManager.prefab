@@ -1,28 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1486877175280614}
-  m_IsPrefabAsset: 1
---- !u!1 &1486877175280614
+--- !u!1 &7460443323405350646
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4187078338175192}
-  - component: {fileID: 114358157630678258}
-  - component: {fileID: 82613356898503836}
-  - component: {fileID: 114261838710550434}
-  - component: {fileID: 114163599722556604}
+  - component: {fileID: 7460443323405350637}
+  - component: {fileID: 7460443323405350634}
+  - component: {fileID: 7460443323405350635}
+  - component: {fileID: 7460443323405350632}
+  - component: {fileID: 7460443323405350633}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -30,12 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4187078338175192
+--- !u!4 &7460443323405350637
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486877175280614}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460443323405350646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -43,12 +34,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82613356898503836
-AudioSource:
-  m_ObjectHideFlags: 1
+--- !u!114 &7460443323405350634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486877175280614}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460443323405350646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfc294def42ce344ae56dd94de4ec0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+  timerPoints: 1
+  addPointsSound: {fileID: 8300000, guid: d135ae778dffae0439d196dffa5f9d44, type: 3}
+  startSound: {fileID: 8300000, guid: ddd09695e7b38e4498c4a51ed7942b8c, type: 3}
+  startScreen: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  waveText: {fileID: 0}
+  speedUpAmount: 0.5
+  waveTextTime: 2
+  pointsSpawnFruit: 100
+  gameOverTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pauseTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  loopBG: {fileID: 8300000, guid: 6b17b8a025d8a2048b14575bf9c33533, type: 3}
+  menuButton: {fileID: 0}
+--- !u!82 &7460443323405350635
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460443323405350646}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -138,24 +168,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114163599722556604
+--- !u!114 &7460443323405350632
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486877175280614}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce58a49f2d75495409590c844c825b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highScoreSound: {fileID: 8300000, guid: 8f00be731ac540a4bbab2431e207bea8, type: 3}
---- !u!114 &114261838710550434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486877175280614}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460443323405350646}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6fc10b50756f4b48844ae1ee4175814, type: 3}
@@ -167,60 +186,36 @@ MonoBehaviour:
   maxY: 5.5
   obstaclesPerLevel: 40
   stalagmites:
-  - {fileID: 1685415302821090, guid: 38ea3c5bb2fe60c458bc4facb4742fa7, type: 2}
-  - {fileID: 1198071345701264, guid: 3cd39d930add8b449bf15944c852f0fb, type: 2}
+  - {fileID: 1685415302821090, guid: 38ea3c5bb2fe60c458bc4facb4742fa7, type: 3}
+  - {fileID: 1198071345701264, guid: 3cd39d930add8b449bf15944c852f0fb, type: 3}
   stalactites:
-  - {fileID: 1350121382417720, guid: b72f313b184c4b441ac1420e7ac47ba3, type: 2}
-  - {fileID: 1634312634969098, guid: 12692d73dc0ba134bafd1682c870bb4a, type: 2}
+  - {fileID: 1350121382417720, guid: b72f313b184c4b441ac1420e7ac47ba3, type: 3}
+  - {fileID: 1634312634969098, guid: 12692d73dc0ba134bafd1682c870bb4a, type: 3}
   floatingObstacles:
-  - {fileID: 1334853262015404, guid: ea8a3fa39c9776d47972b2349855e0f4, type: 2}
-  - {fileID: 1458086066258890, guid: 48fcaed2797370d4d8d38c7cc03316fe, type: 2}
-  - {fileID: 1458086066258890, guid: 48fcaed2797370d4d8d38c7cc03316fe, type: 2}
-  - {fileID: 1458086066258890, guid: 48fcaed2797370d4d8d38c7cc03316fe, type: 2}
-  firefly: {fileID: 1429736102194644, guid: c469cdf642351504983f36241e7eb4ba, type: 2}
-  fruit: {fileID: 1992064292199434, guid: e1cae4afea15bed479690dc87d694992, type: 2}
+  - {fileID: 1334853262015404, guid: ea8a3fa39c9776d47972b2349855e0f4, type: 3}
+  - {fileID: 1458086066258890, guid: 48fcaed2797370d4d8d38c7cc03316fe, type: 3}
+  - {fileID: 1458086066258890, guid: 48fcaed2797370d4d8d38c7cc03316fe, type: 3}
+  - {fileID: 1458086066258890, guid: 48fcaed2797370d4d8d38c7cc03316fe, type: 3}
+  firefly: {fileID: 1429736102194644, guid: c469cdf642351504983f36241e7eb4ba, type: 3}
+  fruit: {fileID: 1992064292199434, guid: e1cae4afea15bed479690dc87d694992, type: 3}
   Snakes:
-  - {fileID: 1250912136837972, guid: b57e528ffcb2953449406725eaf59a9c, type: 2}
+  - {fileID: 1250912136837972, guid: b57e528ffcb2953449406725eaf59a9c, type: 3}
   stalagmiteMax: -3.5
   stalactiteMax: 3.5
   waveWait: 6
   bossWait: 8
   bossOffset: 5
   bossDeath: {fileID: 8300000, guid: f5c06d824881dac4ab8a14ecba84883f, type: 3}
---- !u!114 &114358157630678258
+--- !u!114 &7460443323405350633
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486877175280614}
-  m_Enabled: 1
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460443323405350646}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cfc294def42ce344ae56dd94de4ec0f, type: 3}
+  m_Script: {fileID: 11500000, guid: ce58a49f2d75495409590c844c825b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuText: {fileID: 0}
-  scoreText: {fileID: 0}
-  timerPoints: 1
-  addPointsSound: {fileID: 8300000, guid: d135ae778dffae0439d196dffa5f9d44, type: 3}
-  startSound: {fileID: 8300000, guid: ddd09695e7b38e4498c4a51ed7942b8c, type: 3}
-  startScreen: {fileID: 0}
-  gameOverScreen: {fileID: 0}
-  waveText: {fileID: 0}
-  speedUpAmount: 0.5
-  waveTextTime: 2
-  pointsSpawnFruit: 100
-  gameOverTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  pauseTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  loopBG: {fileID: 8300000, guid: 6b17b8a025d8a2048b14575bf9c33533, type: 3}
+  highScoreSound: {fileID: 8300000, guid: 8f00be731ac540a4bbab2431e207bea8, type: 3}

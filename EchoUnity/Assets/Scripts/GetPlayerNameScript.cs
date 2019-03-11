@@ -7,6 +7,7 @@ public class GetPlayerNameScript : MonoBehaviour {
     internal string stringToEdit;
     private AudioSource audioSource;
     public AudioClip highScoreSound;
+    public GameObject enterButton;
 
     private void Awake()
     {     
@@ -15,6 +16,7 @@ public class GetPlayerNameScript : MonoBehaviour {
 
     private void OnEnable()
     {
+        enterButton.SetActive(true);
         stringToEdit = " HighScore!!! Please Enter Your Name";
         audioSource.PlayOneShot(highScoreSound);
     }

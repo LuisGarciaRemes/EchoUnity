@@ -14,7 +14,6 @@ public class GameManagerScript : MonoBehaviour {
         Default
     }
 
-    public Text menuText;
     public Text scoreText;
     public bool timerPoints;
     public AudioClip addPointsSound;
@@ -28,6 +27,11 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject[] gameOverTexts;
     public GameObject[] pauseTexts;
     public AudioClip loopBG;
+    public GameObject menuButton;
+    public GameObject enterButton;
+    public GameObject tutorialCanvas;
+    public GameObject tutorialManager;
+    public bool resetScores;
 
     private GMode mode;
 
@@ -64,8 +68,11 @@ public class GameManagerScript : MonoBehaviour {
         fruitPoints = pointsSpawnFruit;
 
 
-        //HighScoreManager._instance.ClearLeaderBoard();
-        HighScoreManager._instance.SaveHighScore("      ", 0);
+        if(resetScores)
+        {
+        HighScoreManager._instance.ClearLeaderBoard();
+        }
+
         UpdateScore();
 
         Time.timeScale = 0;
@@ -147,6 +154,8 @@ public class GameManagerScript : MonoBehaviour {
                 if (spawner)
                     spawner.enabled = true;
                 TutorialManager.DisableTutorial();
+                tutorialCanvas.SetActive(false);
+                tutorialManager.SetActive(false);
                 break;
             case GMode.Tutorial:
                 mode = m;
@@ -206,65 +215,29 @@ public class GameManagerScript : MonoBehaviour {
         // Enter tutorial mode
         if (Input.GetButtonDown("tutorialButton") && mode == GMode.Default)
         {
-            SwitchMode(GMode.Tutorial);
-            startScreen.SetActive(false);
-            audioSource.PlayOneShot(startSound);
-            HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
-            gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
-            paused = false;
-            gameOver = false;
-            isLarger = false;
-            waveText.SetActive(false);
+            TutorialButton();
         }
         if (Input.GetButtonDown("Start") && gameObject.GetComponent<GetPlayerNameScript>().enabled)
         {
-            SwitchMode(GMode.Normal);
-            audioSource.PlayOneShot(startSound);
-            HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit,score);
-            gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
-            isLarger = false;
+            EnterNameButton();
         }
         else if (Input.GetButtonDown("Start") && !gameOver)
         {
-            SwitchMode(GMode.Normal);
-            menuText.text = "Press <Start> Play ,<X> Restart, <B> HighScores";
-            paused = !paused;
-            startScreen.SetActive(paused);
-            audioSource.PlayOneShot(startSound);          
-            SetScoreDisplayOff();
-            Time.timeScale = paused ? 0 : 1;
+            ResumeButton();
         }
-        else if (Input.GetButtonDown("Restart") && paused)
+        else if (Input.GetButtonDown("Restart") && paused && !gameObject.GetComponent<GetPlayerNameScript>().enabled)
         {
-            UpdateScore();
-            SwitchMode(GMode.Normal);
-            Time.timeScale = 1;
-            die = true;
-            audioSource.PlayOneShot(startSound);
-            paused = false;
-            gameOver = false;
-            gameOverScreen.SetActive(false);
-            startScreen.SetActive(false);
-            pointsSpawnFruit = fruitPoints;
-            score = 0;
-            level = 1;
-            echo.GetComponent<PlayerScript>().restart();
-            isLarger = false;
-            SetScoreDisplayOff();
-            gameObject.GetComponent<SpawnerScript>().resetSpawner();
-            SetWaveDisplayOn();
+            RestartButton();
         }
 
         if (Input.GetButtonDown("HighScore") && paused)
         {
-            UpdateScore();
-            audioSource.PlayOneShot(startSound);
-            ToggleScoreDisplay();
+            HighScoresButton();
         }
         
         else if (Input.GetKey("escape"))
         {
-            Application.Quit();
+            QuitButton();
         }
     }
 
@@ -326,5 +299,76 @@ public class GameManagerScript : MonoBehaviour {
         {
             gameObject.GetComponent<GetPlayerNameScript>().enabled = true;
         }
+    }
+
+    public void RestartButton()
+    {
+        menuButton.SetActive(!menuButton.activeSelf);
+        UpdateScore();
+        SwitchMode(GMode.Normal);
+        Time.timeScale = 1;
+        die = true;
+        audioSource.PlayOneShot(startSound);
+        paused = false;
+        gameOver = false;
+        gameOverScreen.SetActive(false);
+        startScreen.SetActive(false);
+        pointsSpawnFruit = fruitPoints;
+        score = 0;
+        level = 1;
+        echo.GetComponent<PlayerScript>().restart();
+        isLarger = false;
+        SetScoreDisplayOff();
+        gameObject.GetComponent<SpawnerScript>().resetSpawner();
+        SetWaveDisplayOn();
+    }
+
+    public void ResumeButton()
+    {
+        menuButton.SetActive(!menuButton.activeSelf);
+        SwitchMode(GMode.Normal);
+        paused = !paused;
+        startScreen.SetActive(paused);
+        audioSource.PlayOneShot(startSound);
+        SetScoreDisplayOff();
+        Time.timeScale = paused ? 0 : 1;
+    }
+
+    public void HighScoresButton()
+    {
+        UpdateScore();
+        audioSource.PlayOneShot(startSound);
+        ToggleScoreDisplay();
+    }
+
+    public void TutorialButton()
+    {
+        menuButton.SetActive(!menuButton.activeSelf);
+        SwitchMode(GMode.Tutorial);
+        startScreen.SetActive(false);
+        audioSource.PlayOneShot(startSound);
+        HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
+        gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
+        paused = false;
+        gameOver = false;
+        isLarger = false;
+        waveText.SetActive(false);
+        tutorialCanvas.SetActive(true);
+        tutorialManager.SetActive(true);
+    }
+
+    public void EnterNameButton()
+    {
+        enterButton.SetActive(false);
+        SwitchMode(GMode.Normal);
+        audioSource.PlayOneShot(startSound);
+        HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
+        gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
+        isLarger = false;
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 }
