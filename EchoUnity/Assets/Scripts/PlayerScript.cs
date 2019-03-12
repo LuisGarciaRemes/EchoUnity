@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour {
     public AudioClip lifeUpSound;
     public AudioClip splatSound;
     public float vol;
+    public Joystick joystick;
 
     private GameObject gameManager;
     private const float NORMALIZE = .01f;
@@ -53,7 +54,7 @@ public class PlayerScript : MonoBehaviour {
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
         audioSource = gameObject.GetComponent<AudioSource>();
         gameManager = GameObject.Find("GameManager");
-        canFire = true;
+        canFire = false;
         canBeNerfed = true;
         canTakeDamage = true;
         isHurt = false;
@@ -236,11 +237,19 @@ public class PlayerScript : MonoBehaviour {
         float xVel = 0.0f;
         float yVel = 0.0f;
 
-        yVel = Input.GetAxis("Vertical") * -speed;
+       if(gameManager.GetComponent<GameManagerScript>().mobileMode)
+        {
+            yVel = joystick.Vertical * speed;
+            xVel = joystick.Horizontal * speed;
+        }
+       else
+        {
+        yVel = Input.GetAxis("Vertical") * speed;
 
         xVel = Input.GetAxis("Horizontal") * speed;
+        }
 
-        if (Input.GetButtonDown("Echo"))
+        if (Input.GetButtonDown("Echo") && !gameManager.GetComponent<GameManagerScript>().mobileMode)
         {
             if (canFire)
             {
@@ -270,7 +279,7 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
-    public void restart()
+    public void Restart()
     {
         numHearts = 5;
         transform.position = new Vector3(-7f,0f,0f);
@@ -278,12 +287,19 @@ public class PlayerScript : MonoBehaviour {
         canBeNerfed = true;
         speed = orgSpeed;
         canTakeDamage = true;
-        canFire = true;
+        canFire = false;
+        fireTimer = 0;
     }
 
     public void PlaySplat()
     {
         audioSource.PlayOneShot(splatSound,vol*4);
+    }
+
+    public void MuteFire()
+    {
+        canFire = false;
+        fireTimer = 0;
     }
 
     private void DeathByBoundary()

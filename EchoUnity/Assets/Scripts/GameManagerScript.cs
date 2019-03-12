@@ -18,20 +18,24 @@ public class GameManagerScript : MonoBehaviour {
     public bool timerPoints;
     public AudioClip addPointsSound;
     public AudioClip startSound;
-    public GameObject startScreen;
-    public GameObject gameOverScreen;
+    public GameObject menuScreen;
     public GameObject waveText;
     public float speedUpAmount;
     public float waveTextTime;
     public int pointsSpawnFruit;
-    public GameObject[] gameOverTexts;
     public GameObject[] pauseTexts;
     public AudioClip loopBG;
     public GameObject menuButton;
     public GameObject enterButton;
+    public GameObject restartButton;
+    public GameObject startButton;
+    public GameObject joystick;
     public GameObject tutorialCanvas;
     public GameObject tutorialManager;
     public bool resetScores;
+    public bool mobileMode;
+    public Sprite gameOverSprite;
+    public Sprite menuSprite;
 
     private GMode mode;
 
@@ -57,7 +61,7 @@ public class GameManagerScript : MonoBehaviour {
     void Start () {
         isLarger = false;
         echo = GameObject.Find("Echo");
-        startScreen.SetActive(true);
+        menuScreen.SetActive(true);
         gameOver = false;
         paused = true;
         timerPointsPerSecond = 0;
@@ -82,7 +86,12 @@ public class GameManagerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GameStartControls();
+
+        if (!mobileMode)
+        {
+            GameStartControls();
+        }
+        
         UpdatePoints();
         DisplayWaveText();
         CheckFruitSpawn();
@@ -91,6 +100,14 @@ public class GameManagerScript : MonoBehaviour {
             audioSource.clip = loopBG;
             audioSource.Play();
             audioSource.loop = true;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (die)
+        {
+            die = false;
         }
     }
 
@@ -107,7 +124,9 @@ public class GameManagerScript : MonoBehaviour {
         die = true;
         paused = true;
         gameOver = true;
-        gameOverScreen.SetActive(true);              
+        startButton.SetActive(false);
+        menuScreen.GetComponent<Image>().sprite = gameOverSprite;
+        menuScreen.SetActive(true);              
     }
 
     public void NextWave()
@@ -130,7 +149,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         isLarger = false;
         echo = GameObject.Find("Echo");
-        startScreen.SetActive(true);
+        menuScreen.SetActive(true);
         gameOver = false;
         paused = true;
         timerPointsPerSecond = 0;
@@ -208,32 +227,10 @@ public class GameManagerScript : MonoBehaviour {
 
     private void GameStartControls()
     {
-        if(die)
-        {
-            die = false;
-        }
-        // Enter tutorial mode
-        if (Input.GetButtonDown("tutorialButton") && mode == GMode.Default)
-        {
-            TutorialButton();
-        }
-        if (Input.GetButtonDown("Start") && gameObject.GetComponent<GetPlayerNameScript>().enabled)
-        {
-            EnterNameButton();
-        }
-        else if (Input.GetButtonDown("Start") && !gameOver)
+       if (Input.GetButtonDown("Start") && !gameOver)
         {
             ResumeButton();
-        }
-        else if (Input.GetButtonDown("Restart") && paused && !gameObject.GetComponent<GetPlayerNameScript>().enabled)
-        {
-            RestartButton();
-        }
-
-        if (Input.GetButtonDown("HighScore") && paused)
-        {
-            HighScoresButton();
-        }
+        }      
         
         else if (Input.GetKey("escape"))
         {
@@ -246,7 +243,6 @@ public class GameManagerScript : MonoBehaviour {
         int i = 0;
         foreach (Scores highScore in HighScoreManager._instance.GetHighScore())
         {        
-            gameOverTexts[i].GetComponent<Text>().text = (i+1) + ". " + highScore.name + " : " + highScore.score;
             pauseTexts[i].GetComponent<Text>().text = (i + 1) + ". " + highScore.name + " : " + highScore.score;
             i++;
         }
@@ -258,20 +254,11 @@ public class GameManagerScript : MonoBehaviour {
         {
             text.SetActive(false);
         }
-
-        foreach (GameObject text in gameOverTexts)
-        {
-            text.SetActive(false);
-        }
     }
 
     private void ToggleScoreDisplay()
     {
         foreach (GameObject text in pauseTexts)
-        {
-            text.SetActive(!text.activeSelf);
-        }
-        foreach (GameObject text in gameOverTexts)
         {
             text.SetActive(!text.activeSelf);
         }
@@ -303,7 +290,12 @@ public class GameManagerScript : MonoBehaviour {
 
     public void RestartButton()
     {
-        menuButton.SetActive(!menuButton.activeSelf);
+        if (mobileMode)
+        {
+            menuButton.SetActive(!menuButton.activeSelf);
+            joystick.SetActive(!joystick.activeSelf);
+        }
+
         UpdateScore();
         SwitchMode(GMode.Normal);
         Time.timeScale = 1;
@@ -311,12 +303,13 @@ public class GameManagerScript : MonoBehaviour {
         audioSource.PlayOneShot(startSound);
         paused = false;
         gameOver = false;
-        gameOverScreen.SetActive(false);
-        startScreen.SetActive(false);
+        menuScreen.GetComponent<Image>().sprite = menuSprite;
+        startButton.SetActive(true);
+        menuScreen.SetActive(false);
         pointsSpawnFruit = fruitPoints;
         score = 0;
         level = 1;
-        echo.GetComponent<PlayerScript>().restart();
+        echo.GetComponent<PlayerScript>().Restart();
         isLarger = false;
         SetScoreDisplayOff();
         gameObject.GetComponent<SpawnerScript>().resetSpawner();
@@ -325,10 +318,16 @@ public class GameManagerScript : MonoBehaviour {
 
     public void ResumeButton()
     {
-        menuButton.SetActive(!menuButton.activeSelf);
+        if (mobileMode)
+        {
+            joystick.SetActive(!joystick.activeSelf);
+            menuButton.SetActive(!menuButton.activeSelf);
+        }
         SwitchMode(GMode.Normal);
         paused = !paused;
-        startScreen.SetActive(paused);
+        echo.GetComponent<PlayerScript>().MuteFire();
+        menuScreen.SetActive(paused);
+        restartButton.SetActive(true);
         audioSource.PlayOneShot(startSound);
         SetScoreDisplayOff();
         Time.timeScale = paused ? 0 : 1;
@@ -343,9 +342,13 @@ public class GameManagerScript : MonoBehaviour {
 
     public void TutorialButton()
     {
-        menuButton.SetActive(!menuButton.activeSelf);
+        if (mobileMode)
+        {
+            joystick.SetActive(!joystick.activeSelf);
+            menuButton.SetActive(!menuButton.activeSelf);
+        }
         SwitchMode(GMode.Tutorial);
-        startScreen.SetActive(false);
+        menuScreen.SetActive(false);
         audioSource.PlayOneShot(startSound);
         HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
         gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
@@ -359,12 +362,12 @@ public class GameManagerScript : MonoBehaviour {
 
     public void EnterNameButton()
     {
-        enterButton.SetActive(false);
         SwitchMode(GMode.Normal);
         audioSource.PlayOneShot(startSound);
         HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
         gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
         isLarger = false;
+        enterButton.SetActive(false);
     }
 
     public void QuitButton()
