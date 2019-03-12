@@ -122,11 +122,10 @@ public class GameManagerScript : MonoBehaviour {
     {
         CheckIfHighScore();
         die = true;
-        paused = true;
         gameOver = true;
         startButton.SetActive(false);
         menuScreen.GetComponent<Image>().sprite = gameOverSprite;
-        menuScreen.SetActive(true);              
+        ResumeButton();
     }
 
     public void NextWave()
@@ -292,6 +291,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         if (mobileMode)
         {
+            joystick.GetComponent<FloatingJoystick>().ResetJoystick();
             menuButton.SetActive(!menuButton.activeSelf);
             joystick.SetActive(!joystick.activeSelf);
         }
@@ -320,6 +320,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         if (mobileMode)
         {
+            joystick.GetComponent<FloatingJoystick>().ResetJoystick();
             joystick.SetActive(!joystick.activeSelf);
             menuButton.SetActive(!menuButton.activeSelf);
         }
@@ -344,6 +345,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         if (mobileMode)
         {
+            joystick.GetComponent<FloatingJoystick>().ResetJoystick();
             joystick.SetActive(!joystick.activeSelf);
             menuButton.SetActive(!menuButton.activeSelf);
         }

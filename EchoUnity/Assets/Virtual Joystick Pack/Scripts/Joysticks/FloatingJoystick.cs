@@ -31,4 +31,10 @@ public class FloatingJoystick : Joystick
         background.gameObject.SetActive(false);
         inputVector = Vector2.zero;
     }
+
+    public void ResetJoystick()
+    {
+        background.gameObject.SetActive(false);
+        inputVector = Vector2.zero;
+    }
 }

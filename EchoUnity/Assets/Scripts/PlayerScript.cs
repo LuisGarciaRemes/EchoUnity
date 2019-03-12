@@ -66,11 +66,11 @@ public class PlayerScript : MonoBehaviour {
 	void Update () {
         if (!gameManager.GetComponent<GameManagerScript>().paused)
         {
+            DeathByBoundary();
             GetInput();
             UpdateCollider();
             CheckFire();
             UpdateLifeBar();
-            DeathByBoundary();
             UpdateColor();
             CheckSpeed();
             audioSource.UnPause();
@@ -306,7 +306,6 @@ public class PlayerScript : MonoBehaviour {
     {
        if(playerRB.transform.position.x < minX)
         {
-            TakeDamage();
             numHearts = 0;
         }
     }

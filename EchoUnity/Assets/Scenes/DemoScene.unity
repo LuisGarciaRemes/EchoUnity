@@ -646,7 +646,7 @@ PrefabInstance:
     - target: {fileID: 7460443323405350634, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 3}
       propertyPath: mobileMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7460443323405350634, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 3}
