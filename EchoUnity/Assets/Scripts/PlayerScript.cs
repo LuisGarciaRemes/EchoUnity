@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour {
     public AudioClip splatSound;
     public float vol;
     public Joystick joystick;
+    public GameObject floatingButton;
 
     private GameObject gameManager;
     private const float NORMALIZE = .01f;
@@ -244,12 +245,12 @@ public class PlayerScript : MonoBehaviour {
         }
        else
         {
-        yVel = Input.GetAxis("Vertical") * speed;
+            yVel = Input.GetAxis("Vertical") * speed;
 
-        xVel = Input.GetAxis("Horizontal") * speed;
+            xVel = Input.GetAxis("Horizontal") * speed;
         }
 
-        if (Input.GetButtonDown("Echo") && !gameManager.GetComponent<GameManagerScript>().mobileMode)
+        if ((Input.GetButtonDown("Echo") && !gameManager.GetComponent<GameManagerScript>().mobileMode) || (floatingButton.GetComponent<FloatingButtonScript>().GetInput() && gameManager.GetComponent<GameManagerScript>().mobileMode))
         {
             if (canFire)
             {

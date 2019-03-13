@@ -50,21 +50,12 @@ MonoBehaviour:
   timerPoints: 1
   addPointsSound: {fileID: 8300000, guid: d135ae778dffae0439d196dffa5f9d44, type: 3}
   startSound: {fileID: 8300000, guid: ddd09695e7b38e4498c4a51ed7942b8c, type: 3}
-  startScreen: {fileID: 0}
-  gameOverScreen: {fileID: 0}
+  menuScreen: {fileID: 0}
   waveText: {fileID: 0}
   speedUpAmount: 0.5
   waveTextTime: 2
   pointsSpawnFruit: 100
-  gameOverTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   pauseTexts:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -72,6 +63,17 @@ MonoBehaviour:
   - {fileID: 0}
   loopBG: {fileID: 8300000, guid: 6b17b8a025d8a2048b14575bf9c33533, type: 3}
   menuButton: {fileID: 0}
+  enterButton: {fileID: 0}
+  restartButton: {fileID: 0}
+  startButton: {fileID: 0}
+  joystick: {fileID: 0}
+  floatingButton: {fileID: 0}
+  tutorialCanvas: {fileID: 0}
+  tutorialManager: {fileID: 0}
+  resetScores: 0
+  mobileMode: 1
+  gameOverSprite: {fileID: 21300000, guid: f9b36d6fbcad0e74c9501147233121bf, type: 3}
+  menuSprite: {fileID: 21300000, guid: b34139c451d73884693cf7ddb8aef9fc, type: 3}
 --- !u!82 &7460443323405350635
 AudioSource:
   m_ObjectHideFlags: 0
@@ -219,3 +221,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScoreSound: {fileID: 8300000, guid: 8f00be731ac540a4bbab2431e207bea8, type: 3}
+  enterButton: {fileID: 0}

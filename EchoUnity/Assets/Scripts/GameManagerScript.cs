@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 
 public class GameManagerScript : MonoBehaviour {
     // singleton instance
@@ -30,6 +32,7 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject restartButton;
     public GameObject startButton;
     public GameObject joystick;
+    public GameObject floatingButton;
     public GameObject tutorialCanvas;
     public GameObject tutorialManager;
     public bool resetScores;
@@ -82,6 +85,11 @@ public class GameManagerScript : MonoBehaviour {
         Time.timeScale = 0;
 
         mode = GMode.Default;
+
+        if (!mobileMode)
+        {
+            startButton.GetComponent<Button>().Select();
+        }
     }
 	
 	// Update is called once per frame
@@ -179,6 +187,8 @@ public class GameManagerScript : MonoBehaviour {
                 mode = m;
                 if (spawner)
                     spawner.enabled = false;
+                tutorialCanvas.SetActive(true);
+                tutorialManager.SetActive(true);
                 TutorialManager.StartTutorial();
                 break;
             default:
@@ -294,6 +304,7 @@ public class GameManagerScript : MonoBehaviour {
             joystick.GetComponent<FloatingJoystick>().ResetJoystick();
             menuButton.SetActive(!menuButton.activeSelf);
             joystick.SetActive(!joystick.activeSelf);
+            floatingButton.SetActive(!floatingButton.activeSelf);
         }
 
         UpdateScore();
@@ -322,6 +333,7 @@ public class GameManagerScript : MonoBehaviour {
         {
             joystick.GetComponent<FloatingJoystick>().ResetJoystick();
             joystick.SetActive(!joystick.activeSelf);
+            floatingButton.SetActive(!floatingButton.activeSelf);
             menuButton.SetActive(!menuButton.activeSelf);
         }
         SwitchMode(GMode.Normal);
@@ -329,7 +341,23 @@ public class GameManagerScript : MonoBehaviour {
         echo.GetComponent<PlayerScript>().MuteFire();
         menuScreen.SetActive(paused);
         restartButton.SetActive(true);
-        audioSource.PlayOneShot(startSound);
+        EventSystem.current.SetSelectedGameObject(null);
+        if (!gameOver)
+        {
+            audioSource.PlayOneShot(startSound);
+            if(!mobileMode)
+            {
+                EventSystem.current.SetSelectedGameObject(startButton);
+            }
+        }
+        else
+        {
+            audioSource.PlayOneShot(echo.GetComponent<PlayerScript>().hurtSound);
+            if (!mobileMode)
+            {
+                EventSystem.current.SetSelectedGameObject(restartButton);
+            }
+        }
         SetScoreDisplayOff();
         Time.timeScale = paused ? 0 : 1;
     }
@@ -347,6 +375,7 @@ public class GameManagerScript : MonoBehaviour {
         {
             joystick.GetComponent<FloatingJoystick>().ResetJoystick();
             joystick.SetActive(!joystick.activeSelf);
+            floatingButton.SetActive(!floatingButton.activeSelf);
             menuButton.SetActive(!menuButton.activeSelf);
         }
         SwitchMode(GMode.Tutorial);
