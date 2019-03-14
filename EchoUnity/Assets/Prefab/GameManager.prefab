@@ -71,7 +71,7 @@ MonoBehaviour:
   tutorialCanvas: {fileID: 0}
   tutorialManager: {fileID: 0}
   resetScores: 0
-  mobileMode: 0
+  mobileMode: 1
   gameOverSprite: {fileID: 21300000, guid: f9b36d6fbcad0e74c9501147233121bf, type: 3}
   menuSprite: {fileID: 21300000, guid: b34139c451d73884693cf7ddb8aef9fc, type: 3}
 --- !u!82 &7460443323405350635

@@ -642,11 +642,6 @@ PrefabInstance:
       propertyPath: mobileMode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7460443323405350634, guid: 3d3a5db1f510ef64792711acbc011e15,
-        type: 3}
-      propertyPath: resetScores
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7460443323405350637, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -861,11 +856,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1204771699}
-    - target: {fileID: 8735611583281478572, guid: 6851f9bb043c0764ca66797432d68314,
-        type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6851f9bb043c0764ca66797432d68314, type: 3}
 --- !u!1 &8735611582682251334 stripped
