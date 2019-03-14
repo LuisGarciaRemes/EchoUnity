@@ -642,6 +642,11 @@ PrefabInstance:
       propertyPath: mobileMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7460443323405350634, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 3}
+      propertyPath: resetScores
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7460443323405350637, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 3}
       propertyPath: m_LocalPosition.x

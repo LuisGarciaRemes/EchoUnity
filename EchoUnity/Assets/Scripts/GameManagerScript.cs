@@ -299,67 +299,70 @@ public class GameManagerScript : MonoBehaviour {
 
     public void RestartButton()
     {
-        if (mobileMode)
+        if (!gameObject.GetComponent<GetPlayerNameScript>().enabled)
         {
-            joystick.GetComponent<FloatingJoystick>().ResetJoystick();
-            menuButton.SetActive(!menuButton.activeSelf);
-            joystick.SetActive(!joystick.activeSelf);
-            floatingButton.SetActive(!floatingButton.activeSelf);
-        }
+            if (mobileMode)
+            {
+                joystick.GetComponent<FloatingJoystick>().ResetJoystick();
+                menuButton.SetActive(!menuButton.activeSelf);
+                joystick.SetActive(!joystick.activeSelf);
+                floatingButton.SetActive(!floatingButton.activeSelf);
+            }
 
-        UpdateScore();
-        SwitchMode(GMode.Normal);
-        Time.timeScale = 1;
-        die = true;
-        audioSource.PlayOneShot(startSound);
-        paused = false;
-        gameOver = false;
-        menuScreen.GetComponent<Image>().sprite = menuSprite;
-        startButton.SetActive(true);
-        menuScreen.SetActive(false);
-        pointsSpawnFruit = fruitPoints;
-        score = 0;
-        level = 1;
-        echo.GetComponent<PlayerScript>().Restart();
-        isLarger = false;
-        SetScoreDisplayOff();
-        gameObject.GetComponent<SpawnerScript>().resetSpawner();
-        SetWaveDisplayOn();
+            UpdateScore();
+            SwitchMode(GMode.Normal);
+            Time.timeScale = 1;
+            die = true;
+            audioSource.PlayOneShot(startSound);
+            paused = false;
+            gameOver = false;
+            menuScreen.GetComponent<Image>().sprite = menuSprite;
+            startButton.SetActive(true);
+            menuScreen.SetActive(false);
+            pointsSpawnFruit = fruitPoints;
+            score = 0;
+            level = 1;
+            echo.GetComponent<PlayerScript>().Restart();
+            isLarger = false;
+            SetScoreDisplayOff();
+            gameObject.GetComponent<SpawnerScript>().resetSpawner();
+            SetWaveDisplayOn();
+        }
     }
 
     public void ResumeButton()
-    {
-        if (mobileMode)
-        {
-            joystick.GetComponent<FloatingJoystick>().ResetJoystick();
-            joystick.SetActive(!joystick.activeSelf);
-            floatingButton.SetActive(!floatingButton.activeSelf);
-            menuButton.SetActive(!menuButton.activeSelf);
-        }
-        SwitchMode(GMode.Normal);
-        paused = !paused;
-        echo.GetComponent<PlayerScript>().MuteFire();
-        menuScreen.SetActive(paused);
-        restartButton.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        if (!gameOver)
-        {
-            audioSource.PlayOneShot(startSound);
-            if(!mobileMode)
+    {       
+            if (mobileMode)
             {
-                EventSystem.current.SetSelectedGameObject(startButton);
+                joystick.GetComponent<FloatingJoystick>().ResetJoystick();
+                joystick.SetActive(!joystick.activeSelf);
+                floatingButton.SetActive(!floatingButton.activeSelf);
+                menuButton.SetActive(!menuButton.activeSelf);
             }
-        }
-        else
-        {
-            audioSource.PlayOneShot(echo.GetComponent<PlayerScript>().hurtSound);
-            if (!mobileMode)
+            SwitchMode(GMode.Normal);
+            paused = !paused;
+            echo.GetComponent<PlayerScript>().MuteFire();
+            menuScreen.SetActive(paused);
+            restartButton.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            if (!gameOver)
             {
-                EventSystem.current.SetSelectedGameObject(restartButton);
+                audioSource.PlayOneShot(startSound);
+                if (!mobileMode)
+                {
+                    EventSystem.current.SetSelectedGameObject(startButton);
+                }
             }
-        }
-        SetScoreDisplayOff();
-        Time.timeScale = paused ? 0 : 1;
+            else
+            {
+                audioSource.PlayOneShot(echo.GetComponent<PlayerScript>().hurtSound);
+                if (!mobileMode)
+                {
+                    EventSystem.current.SetSelectedGameObject(restartButton);
+                }
+            }
+            SetScoreDisplayOff();
+            Time.timeScale = paused ? 0 : 1;
     }
 
     public void HighScoresButton()
