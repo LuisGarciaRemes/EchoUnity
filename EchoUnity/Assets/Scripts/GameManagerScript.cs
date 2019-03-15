@@ -74,8 +74,9 @@ public class GameManagerScript : MonoBehaviour {
         waveTextTimer = 0;
         fruitPoints = pointsSpawnFruit;
 
+        HighScoreManager._instance.SaveHighScore("      ", 0);
 
-        if(resetScores)
+        if (resetScores)
         {
         HighScoreManager._instance.ClearLeaderBoard();
         }
@@ -180,15 +181,15 @@ public class GameManagerScript : MonoBehaviour {
                 if (spawner)
                     spawner.enabled = true;
                 TutorialManager.DisableTutorial();
-                tutorialCanvas.SetActive(false);
                 tutorialManager.SetActive(false);
+                tutorialCanvas.SetActive(false);
                 break;
             case GMode.Tutorial:
                 mode = m;
                 if (spawner)
                     spawner.enabled = false;
-                tutorialCanvas.SetActive(true);
                 tutorialManager.SetActive(true);
+                tutorialCanvas.SetActive(true);
                 TutorialManager.StartTutorial();
                 break;
             default:

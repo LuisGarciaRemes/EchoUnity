@@ -642,6 +642,11 @@ PrefabInstance:
       propertyPath: mobileMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7460443323405350634, guid: 3d3a5db1f510ef64792711acbc011e15,
+        type: 3}
+      propertyPath: resetScores
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7460443323405350637, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -715,6 +720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735611584606707640, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8735611583281478563, guid: 6851f9bb043c0764ca66797432d68314,
         type: 3}
@@ -856,6 +866,27 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1204771699}
+    - target: {fileID: 8735611584606707780, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735611583525701137, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 3}
+      propertyPath: m_Text
+      value: "Press the left side of the screen to move around. Press the right side
+        of the screen to fire an echo. \nEchos reveal hidden objects they collide
+        with."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735611583856681001, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Rocks hurt you and blue tangles slow your movement.
+
+        Beware the left edge of the screen.
+
+        If you go to far back you will die.'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6851f9bb043c0764ca66797432d68314, type: 3}
 --- !u!1 &8735611582682251334 stripped
