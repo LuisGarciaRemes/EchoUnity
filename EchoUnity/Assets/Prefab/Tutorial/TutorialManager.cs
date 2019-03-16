@@ -23,6 +23,8 @@ public class TutorialManager : MonoBehaviour {
 
     public GameObject tutorialObstacle;
     public GameObject tutorialItem;
+    public Joystick joystick;
+    public FloatingButtonScript floatingButton;
 
     // private variables
     TutorialStage _stage;
@@ -101,6 +103,7 @@ public class TutorialManager : MonoBehaviour {
     // private functions
     public void NextStage()
     {
+        Debug.Log(_stage);
         if(_stage != TutorialStage.Default)
         {
             _stage++;
@@ -185,20 +188,35 @@ public class TutorialManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        var next = false;
 		// Tutorial Procedural Controll
         if(_stage == TutorialStage.MovePause)
         {
-            if(Input.GetAxis("Vertical") > 0||
+            if(GameManagerScript.instance.mobileMode){
+                if(joystick.Vertical != 0 || joystick.Horizontal != 0){
+                    next = true;
+                }
+            } else if(Input.GetAxis("Vertical") > 0||
                Input.GetAxis("Vertical") < 0 ||
                 Input.GetAxis("Horizontal") > 0||
                 Input.GetAxis("Horizontal") < 0)
             {
+                next = true;
+            }
+            if(next){
                 NextStage();
             }
         }else if(_stage == TutorialStage.MoveTry)
         {
-            if (Input.GetButtonDown("Echo"))
+            if(GameManagerScript.instance.mobileMode){
+                if(floatingButton.GetInput()){
+                    next = true;
+                }
+            } else if (Input.GetButtonDown("Echo"))
             {
+                next = true;
+            }
+            if(next){
                 StartCoroutine("EndMoveTry");
             }
             //if(Time.realtimeSinceStartup - _lastCheckRealTime > moveTryTime)
@@ -228,6 +246,9 @@ public class TutorialManager : MonoBehaviour {
         {
             if (Time.realtimeSinceStartup - _lastCheckRealTime > finalPauseTime)
             {
+                joystick.gameObject.SetActive(false);
+                floatingButton.gameObject.SetActive(false);
+                GameObject.Find("MenuButton").SetActive(false);
                 TutorialCanvas.HideAllTexts();
                 _stage = TutorialStage.Default;
                 GameManagerScript.instance.ToStartScreen();

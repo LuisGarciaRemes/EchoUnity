@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class FloatingJoystick : Joystick
 {
+    // private references & varialbes
     Vector2 joystickCenter = Vector2.zero;
 
     void Start()

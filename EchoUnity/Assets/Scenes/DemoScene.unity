@@ -537,6 +537,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114257934632652876, guid: 0d0d51763e240964fbe0314cddfd9fea,
+        type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 1062499497}
+    - target: {fileID: 114257934632652876, guid: 0d0d51763e240964fbe0314cddfd9fea,
+        type: 3}
+      propertyPath: floatingButton
+      value: 
+      objectReference: {fileID: 2122633333}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d0d51763e240964fbe0314cddfd9fea, type: 3}
 --- !u!1 &2122633331 stripped
@@ -545,6 +555,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8735611582682251333}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2122633333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4564934322440346283, guid: 6851f9bb043c0764ca66797432d68314,
+    type: 3}
+  m_PrefabInstance: {fileID: 8735611582682251333}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122633331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3198aeafa66d83e439ffd33b8396432d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7460443322244263321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -640,7 +662,7 @@ PrefabInstance:
     - target: {fileID: 7460443323405350634, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 3}
       propertyPath: mobileMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7460443323405350634, guid: 3d3a5db1f510ef64792711acbc011e15,
         type: 3}
@@ -720,6 +742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546817152250917760, guid: 6851f9bb043c0764ca66797432d68314,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8735611584606707640, guid: 6851f9bb043c0764ca66797432d68314,
         type: 3}
