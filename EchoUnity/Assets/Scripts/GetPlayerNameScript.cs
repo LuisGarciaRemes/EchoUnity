@@ -23,7 +23,7 @@ public class GetPlayerNameScript : MonoBehaviour {
 
     void OnGUI()
     {
-        stringToEdit = GUI.TextField(new Rect(Screen.width/2-365, Screen.height/2+165, 730, 50), stringToEdit, 50);
+        stringToEdit = GUI.TextField(new Rect(Screen.width/2-365, Screen.height/2+50, 730, 50), stringToEdit, 50);
         GUI.skin.textField.fontSize = 40;
     }
 }

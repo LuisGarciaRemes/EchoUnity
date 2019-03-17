@@ -246,7 +246,6 @@ public class PlayerScript : MonoBehaviour {
        else
         {
             yVel = Input.GetAxis("Vertical") * speed;
-
             xVel = Input.GetAxis("Horizontal") * speed;
         }
 
