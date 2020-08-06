@@ -11,21 +11,19 @@ public class EcholocateSnakeScript : MonoBehaviour {
 
     private Color color;
     private AudioSource audioSource;
-    private GameObject gameManager;
 
     //Makes gameObject invisible
     void Start()
     {
         spriteMesh.color = new Color(1, 1, 1, 0);
         audioSource = gameObject.GetComponent<AudioSource>();
-        gameManager = GameObject.Find("GameManager");
     }
 
     //Updates the opacity
     void Update()
     {
 
-        if (spriteMesh.color.a > 0 && !gameManager.GetComponent<GameManagerScript>().paused)
+        if (spriteMesh.color.a > 0 && !GameManagerScript.instance.paused)
         {
             color = spriteMesh.color;
             color.a -= (1 / (timeLapse)) * Time.deltaTime;
@@ -36,7 +34,7 @@ public class EcholocateSnakeScript : MonoBehaviour {
     //Makes the gameObject visible when hit by Wave
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wave") && !gameManager.GetComponent<GameManagerScript>().paused)
+        if (other.CompareTag("Wave") && !GameManagerScript.instance.paused)
         {
             audioSource.PlayOneShot(echoSound, echoVol);
             spriteMesh.color = new Color(1, 1, 1, 1);

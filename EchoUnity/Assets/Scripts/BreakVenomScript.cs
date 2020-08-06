@@ -31,7 +31,7 @@ public class BreakVenomScript : MonoBehaviour {
             venom.transform.localScale = -venom.transform.localScale;
             venom.GetComponent<SimpleMovementScript>().speedX = (speed-(speed*.25f));
             venom.GetComponent<SimpleMovementScript>().speedY = -(speed - (speed * .25f));
-            gameObject.transform.localScale = new Vector3(.8f,.8f,1f);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -6,7 +6,6 @@ public class SlowOnCollisionScript : MonoBehaviour {
 
     public float nerfTime;
     public float amountReduce;
-    private GameObject gameManager;
     private AudioSource audioSource;
 
     private void Start()

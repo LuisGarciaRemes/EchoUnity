@@ -71,11 +71,9 @@ public class TutorialManager : MonoBehaviour {
             var obstacle =
                 Instantiate(
                     tutorialObstacle,
-                    new Vector3(10, 0, 0),
-                    Quaternion.Euler(0, 0, 0),
-                    transform);
+                    new Vector3(100, 0, 0),
+                    Quaternion.Euler(0, 0, 0));
         }
-        StartCoroutine("AddBackHeart");
     }
 
     public static void HitByObstacle()
@@ -89,9 +87,8 @@ public class TutorialManager : MonoBehaviour {
         {
             var item = Instantiate(
                     tutorialItem,
-                    new Vector3(10, 0, 0),
-                    Quaternion.Euler(0, 0, 0),
-                    transform);
+                    new Vector3(100, 0, 0),
+                    Quaternion.Euler(0, 0, 0));
         }
     }
 
@@ -128,9 +125,8 @@ public class TutorialManager : MonoBehaviour {
                     var obstacle = 
                         Instantiate(
                             tutorialObstacle, 
-                            new Vector3(10, 0, 0), 
-                            Quaternion.Euler(0, 0, 0), 
-                            transform);
+                            new Vector3(100, 0, 0), 
+                            Quaternion.Euler(0, 0, 0));
                 }
             }else if(_stage == TutorialStage.CatchItemPause)
             {
@@ -147,9 +143,8 @@ public class TutorialManager : MonoBehaviour {
                 {
                     var item = Instantiate(
                             tutorialItem,
-                            new Vector3(10, 0, 0),
-                            Quaternion.Euler(0, 0, 0),
-                            transform);
+                            new Vector3(100, 0, 0),
+                            Quaternion.Euler(0, 0, 0));
                 }
             }
             else if(_stage == TutorialStage.TutorialEnding)
@@ -169,12 +164,6 @@ public class TutorialManager : MonoBehaviour {
         {
             NextStage();
         }
-    }
-
-    IEnumerator AddBackHeart()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        PlayerScript.instance.AddHeart();
     }
 
     // Use this for initialization
@@ -198,8 +187,8 @@ public class TutorialManager : MonoBehaviour {
                 }
             } else if(Input.GetAxis("Vertical") > 0||
                Input.GetAxis("Vertical") < 0 ||
-                Input.GetAxis("Horizontal") > 0||
-                Input.GetAxis("Horizontal") < 0)
+                Input.GetAxis("Horizontal") > 0 || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || 
+                Input.GetAxis("Horizontal") < 0 || Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 next = true;
             }
@@ -248,7 +237,6 @@ public class TutorialManager : MonoBehaviour {
             {
                 joystick.gameObject.SetActive(false);
                 floatingButton.gameObject.SetActive(false);
-                GameObject.Find("MenuButton").SetActive(false);
                 TutorialCanvas.HideAllTexts();
                 _stage = TutorialStage.Default;
                 GameManagerScript.instance.ToStartScreen();

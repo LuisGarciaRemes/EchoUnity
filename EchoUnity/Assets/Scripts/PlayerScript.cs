@@ -14,7 +14,6 @@ public class PlayerScript : MonoBehaviour {
     public float fireRate;
     public GameObject wave;
     public Sprite[] sprites;
-    public GameObject[] colliders;
     public GameObject[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -27,10 +26,8 @@ public class PlayerScript : MonoBehaviour {
     public Joystick joystick;
     public GameObject floatingButton;
 
-    private GameObject gameManager;
-    private const float NORMALIZE = .01f;
     private const float MAXLIVES = 5;
-    private Rigidbody2D playerRB;
+   // private Rigidbody2D playerRB;
     private bool canFire;
     private Sprite anim;
     private float fireTimer;
@@ -51,10 +48,9 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void Start () {
-        playerRB = gameObject.GetComponent<Rigidbody2D>();
+        //playerRB = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<SpriteRenderer>().sprite;
         audioSource = gameObject.GetComponent<AudioSource>();
-        gameManager = GameObject.Find("GameManager");
         canFire = false;
         canBeNerfed = true;
         canTakeDamage = true;
@@ -65,11 +61,10 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!gameManager.GetComponent<GameManagerScript>().paused)
+        if (!GameManagerScript.instance.paused)
         {
             DeathByBoundary();
             GetInput();
-            UpdateCollider();
             CheckFire();
             UpdateLifeBar();
             UpdateColor();
@@ -80,33 +75,6 @@ public class PlayerScript : MonoBehaviour {
         {
             audioSource.Pause();
         }
-    }
-
-    private void UpdateCollider()
-    {
-        anim = gameObject.GetComponent<SpriteRenderer>().sprite;
-
-        if(anim.Equals(sprites[0]))
-        {
-            colliders[3].SetActive(false);
-            colliders[0].SetActive(true);
-        }
-        else if(anim.Equals(sprites[1]))
-        {
-            colliders[0].SetActive(false);
-            colliders[1].SetActive(true);
-        }
-        else if (anim.Equals(sprites[2]))
-        {
-            colliders[1].SetActive(false);
-            colliders[2].SetActive(true);
-        }
-        else if (anim.Equals(sprites[3]))
-        {
-            colliders[2].SetActive(false);
-            colliders[3].SetActive(true);
-        }
-
     }
 
     private void UpdateLifeBar()
@@ -130,7 +98,7 @@ public class PlayerScript : MonoBehaviour {
 
         if(numHearts <= 0)
         {
-            gameManager.GetComponent<GameManagerScript>().GameOver();
+            GameManagerScript.instance.GameOver();
         }
     }
 
@@ -228,7 +196,7 @@ public class PlayerScript : MonoBehaviour {
         }
         else
         {
-            gameManager.GetComponent<GameManagerScript>().AddPoints(50); 
+            GameManagerScript.instance.AddPoints(50); 
         }
         audioSource.PlayOneShot(lifeUpSound);
     }
@@ -238,7 +206,7 @@ public class PlayerScript : MonoBehaviour {
         float xVel = 0.0f;
         float yVel = 0.0f;
 
-       if(gameManager.GetComponent<GameManagerScript>().mobileMode)
+       if(GameManagerScript.instance.mobileMode)
         {
             yVel = joystick.Vertical * speed;
             xVel = joystick.Horizontal * speed;
@@ -249,32 +217,32 @@ public class PlayerScript : MonoBehaviour {
             xVel = Input.GetAxis("Horizontal") * speed;
         }
 
-        if ((Input.GetButtonDown("Echo") && !gameManager.GetComponent<GameManagerScript>().mobileMode) || (floatingButton.GetComponent<FloatingButtonScript>().GetInput() && gameManager.GetComponent<GameManagerScript>().mobileMode))
+        if ((Input.GetButtonDown("Echo") && !GameManagerScript.instance.mobileMode) || (floatingButton.GetComponent<FloatingButtonScript>().GetInput() && GameManagerScript.instance.mobileMode))
         {
             if (canFire)
             {
-                Instantiate(wave, new Vector3(playerRB.position.x + wave.transform.position.x, playerRB.position.y + wave.transform.position.y, 0.0f), Quaternion.identity);
+                Instantiate(wave, new Vector3(transform.position.x + wave.transform.position.x, transform.position.y + wave.transform.position.y, 0.0f), Quaternion.identity);
                 fireTimer = fireRate;
                 canFire = false;
             }
 
         }
 
-        playerRB.transform.position += new Vector3(xVel * NORMALIZE, yVel * NORMALIZE, 0.0f);
+        transform.position += new Vector3(xVel,yVel,0.0f) * Time.deltaTime;
 
-        if(playerRB.position.x > maxX)
+        if(transform.position.x > maxX)
         {
-            playerRB.position = new Vector3(maxX,playerRB.position.y,0.0f);
+            transform.position = new Vector3(maxX, transform.position.y,0.0f);
         }
 
-        if (playerRB.position.y < minY)
+        if (transform.position.y < minY)
         {
-            playerRB.position = new Vector3(playerRB.position.x,minY, 0.0f);
+            transform.position = new Vector3(transform.position.x,minY, 0.0f);
         }
 
-        if (playerRB.position.y > maxY)
+        if (transform.position.y > maxY)
         {
-            playerRB.position = new Vector3(playerRB.position.x, maxY, 0.0f);
+            transform.position = new Vector3(transform.position.x, maxY, 0.0f);
         }
 
     }
@@ -282,7 +250,7 @@ public class PlayerScript : MonoBehaviour {
     public void Restart()
     {
         numHearts = 5;
-        transform.position = new Vector3(-7f,0f,0f);
+        transform.position = new Vector3(-70f,0f,0f);
         isHurt = false;
         canBeNerfed = true;
         speed = orgSpeed;
@@ -304,7 +272,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void DeathByBoundary()
     {
-       if(playerRB.transform.position.x < minX)
+       if(transform.position.x < minX)
         {
             numHearts = 0;
         }

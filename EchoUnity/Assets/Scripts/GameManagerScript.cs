@@ -20,6 +20,7 @@ public class GameManagerScript : MonoBehaviour {
     public bool timerPoints;
     public AudioClip addPointsSound;
     public AudioClip startSound;
+    public AudioClip errorSound;
     public GameObject menuScreen;
     public GameObject waveText;
     public float speedUpAmount;
@@ -28,7 +29,6 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject[] pauseTexts;
     public AudioClip loopBG;
     public GameObject menuButton;
-    public GameObject enterButton;
     public GameObject restartButton;
     public GameObject startButton;
     public GameObject joystick;
@@ -42,7 +42,7 @@ public class GameManagerScript : MonoBehaviour {
 
     private GMode mode;
 
-    private GameObject echo;
+    public GameObject echo;
     private int score;
     private float timerPointsPerSecond;
     private AudioSource audioSource;
@@ -63,7 +63,6 @@ public class GameManagerScript : MonoBehaviour {
 
     void Start () {
         isLarger = false;
-        echo = GameObject.Find("Echo");
         menuScreen.SetActive(true);
         gameOver = false;
         paused = true;
@@ -81,7 +80,7 @@ public class GameManagerScript : MonoBehaviour {
         HighScoreManager._instance.ClearLeaderBoard();
         }
 
-        UpdateScore();
+        UpdateScoreText();
 
         Time.timeScale = 0;
 
@@ -107,7 +106,6 @@ public class GameManagerScript : MonoBehaviour {
         if(audioSource.isPlaying == false && gameObject.GetComponent<SpawnerScript>().currBoss == null)
         {
             audioSource.clip = loopBG;
-            audioSource.Play();
             audioSource.loop = true;
         }
     }
@@ -132,9 +130,9 @@ public class GameManagerScript : MonoBehaviour {
         CheckIfHighScore();
         die = true;
         gameOver = true;
-        startButton.SetActive(false);
         menuScreen.GetComponent<Image>().sprite = gameOverSprite;
         ResumeButton();
+        startButton.SetActive(false);
     }
 
     public void NextWave()
@@ -145,30 +143,19 @@ public class GameManagerScript : MonoBehaviour {
 
     public void NoUIPause()
     {
+        GameManagerScript.instance.echo.GetComponent<AudioSource>().volume = 0.0f;
         paused = true;
     }
 
     public void NoUIResume()
     {
+        GameManagerScript.instance.echo.GetComponent<AudioSource>().volume = 0.0f;
         paused = false;
     }
 
     public void ToStartScreen()
     {
-        isLarger = false;
-        echo = GameObject.Find("Echo");
-        menuScreen.SetActive(true);
-        gameOver = false;
-        paused = true;
-        timerPointsPerSecond = 0;
-        score = 0;
-        audioSource = gameObject.GetComponent<AudioSource>();
-        level = 1;
-        waveTextTimer = 0;
-        fruitPoints = pointsSpawnFruit;
-        Time.timeScale = 0;
-
-        mode = GMode.Default;
+        ResumeButton();
     }
 
     // private functions
@@ -248,29 +235,13 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
-    private void UpdateScore()
+    private void UpdateScoreText()
     {       
         int i = 0;
         foreach (Scores highScore in HighScoreManager._instance.GetHighScore())
         {        
             pauseTexts[i].GetComponent<Text>().text = (i + 1) + ". " + highScore.name + " : " + highScore.score;
             i++;
-        }
-    }
-
-    private void SetScoreDisplayOff()
-    {
-        foreach (GameObject text in pauseTexts)
-        {
-            text.SetActive(false);
-        }
-    }
-
-    private void ToggleScoreDisplay()
-    {
-        foreach (GameObject text in pauseTexts)
-        {
-            text.SetActive(!text.activeSelf);
         }
     }
 
@@ -310,7 +281,7 @@ public class GameManagerScript : MonoBehaviour {
                 floatingButton.SetActive(!floatingButton.activeSelf);
             }
 
-            UpdateScore();
+            UpdateScoreText();
             SwitchMode(GMode.Normal);
             Time.timeScale = 1;
             die = true;
@@ -325,9 +296,12 @@ public class GameManagerScript : MonoBehaviour {
             level = 1;
             echo.GetComponent<PlayerScript>().Restart();
             isLarger = false;
-            SetScoreDisplayOff();
             gameObject.GetComponent<SpawnerScript>().resetSpawner();
             SetWaveDisplayOn();
+        }
+        else
+        {
+            audioSource.PlayOneShot(errorSound);
         }
     }
 
@@ -340,10 +314,21 @@ public class GameManagerScript : MonoBehaviour {
                 floatingButton.SetActive(!floatingButton.activeSelf);
                 menuButton.SetActive(!menuButton.activeSelf);
             }
-            SwitchMode(GMode.Normal);
             paused = !paused;
             echo.GetComponent<PlayerScript>().MuteFire();
             menuScreen.SetActive(paused);
+
+        if (mode == GMode.Tutorial)
+        {
+            startButton.SetActive(false);
+        }
+        else
+        {
+            startButton.SetActive(true);
+        }
+
+        SwitchMode(GMode.Normal);
+
             restartButton.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
             if (!gameOver)
@@ -351,7 +336,14 @@ public class GameManagerScript : MonoBehaviour {
                 audioSource.PlayOneShot(startSound);
                 if (!mobileMode)
                 {
-                    EventSystem.current.SetSelectedGameObject(startButton);
+                    if (startButton.activeSelf)
+                    {
+                        EventSystem.current.SetSelectedGameObject(startButton);
+                    }
+                    else
+                    {
+                        EventSystem.current.SetSelectedGameObject(restartButton);
+                    }
                 }
             }
             else
@@ -362,47 +354,57 @@ public class GameManagerScript : MonoBehaviour {
                     EventSystem.current.SetSelectedGameObject(restartButton);
                 }
             }
-            SetScoreDisplayOff();
             Time.timeScale = paused ? 0 : 1;
-    }
-
-    public void HighScoresButton()
-    {
-        UpdateScore();
-        audioSource.PlayOneShot(startSound);
-        ToggleScoreDisplay();
     }
 
     public void TutorialButton()
     {
-        if (mobileMode)
+        if (!gameObject.GetComponent<GetPlayerNameScript>().enabled)
         {
-            joystick.GetComponent<FloatingJoystick>().ResetJoystick();
-            joystick.SetActive(!joystick.activeSelf);
-            floatingButton.SetActive(!floatingButton.activeSelf);
-            menuButton.SetActive(!menuButton.activeSelf);
+            if (mobileMode)
+            {
+                joystick.GetComponent<FloatingJoystick>().ResetJoystick();
+                joystick.SetActive(!joystick.activeSelf);
+                floatingButton.SetActive(!floatingButton.activeSelf);
+                menuButton.SetActive(!menuButton.activeSelf);
+            }
+            die = true;
+            echo.GetComponent<PlayerScript>().Restart();
+            SwitchMode(GMode.Tutorial);
+            menuScreen.SetActive(false);
+            audioSource.PlayOneShot(startSound);
+            paused = false;
+            gameOver = false;
+            isLarger = false;
+            pointsSpawnFruit = fruitPoints;
+            score = 0;
+            level = 1;
+            waveText.SetActive(false);
+            tutorialCanvas.SetActive(true);
+            tutorialManager.SetActive(true);
         }
-        SwitchMode(GMode.Tutorial);
-        menuScreen.SetActive(false);
-        audioSource.PlayOneShot(startSound);
-        HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
-        gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
-        paused = false;
-        gameOver = false;
-        isLarger = false;
-        waveText.SetActive(false);
-        tutorialCanvas.SetActive(true);
-        tutorialManager.SetActive(true);
+        else
+        {
+            audioSource.PlayOneShot(errorSound);
+        }
     }
 
     public void EnterNameButton()
     {
-        SwitchMode(GMode.Normal);
-        audioSource.PlayOneShot(startSound);
-        HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().stringToEdit, score);
-        gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
-        isLarger = false;
-        enterButton.SetActive(false);
+        if (!gameObject.GetComponent<GetPlayerNameScript>().text.text.Equals(""))
+        {
+            SwitchMode(GMode.Normal);
+            audioSource.PlayOneShot(startSound);
+            HighScoreManager._instance.SaveHighScore(gameObject.GetComponent<GetPlayerNameScript>().text.text, score);
+            gameObject.GetComponent<GetPlayerNameScript>().enabled = false;
+            isLarger = false;
+            UpdateScoreText();
+            EventSystem.current.SetSelectedGameObject(restartButton);
+        }
+        else
+        {
+            audioSource.PlayOneShot(errorSound);
+        }
     }
 
     public void QuitButton()

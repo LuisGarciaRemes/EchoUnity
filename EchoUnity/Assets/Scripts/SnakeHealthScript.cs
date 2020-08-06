@@ -23,7 +23,7 @@ public class SnakeHealthScript : MonoBehaviour {
 
     private void Start()
     {
-        GameObject.Find("GameManager").GetComponent<GameManagerScript>().timerPoints = false;
+        GameManagerScript.instance.timerPoints = false;
         isHurt = false;
         hurtTimer = 0;
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -52,7 +52,7 @@ public class SnakeHealthScript : MonoBehaviour {
             }
         else
         {
-            GameObject.Find("GameManager").GetComponent<SpawnerScript>().PlayDeathClip();
+            GameManagerScript.instance.gameObject.GetComponent<SpawnerScript>().PlayDeathClip();
         }
     }
 
@@ -77,9 +77,9 @@ public class SnakeHealthScript : MonoBehaviour {
 
         if (numHearts <= 0)
         {
-            GameObject.Find("GameManager").GetComponent<GameManagerScript>().AddPoints(points);
-            GameObject.Find("GameManager").GetComponent<SpawnerScript>().spawnNewWave = true;
-            GameObject.Find("GameManager").GetComponent<GameManagerScript>().timerPoints = true;
+            GameManagerScript.instance.AddPoints(points);
+            GameManagerScript.instance.gameObject.GetComponent<SpawnerScript>().spawnNewWave = true;
+            GameManagerScript.instance.timerPoints = true;
             Destroy(gameObject);
         }
     }

@@ -5,21 +5,16 @@ using UnityEngine;
 public class KnockBackScript : MonoBehaviour {
 
     public float knockBackAmount;
-
-    private GameObject echo;
     private AudioSource audioSource;
-    private GameObject gameManager;
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager");
-        echo = GameObject.Find("Echo");
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
+        if (collision.gameObject.CompareTag("Player") && !GameManagerScript.instance.paused)
         {
                 audioSource.Play();
         }
@@ -27,11 +22,11 @@ public class KnockBackScript : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !gameManager.GetComponent<GameManagerScript>().paused)
+        if (collision.gameObject.CompareTag("Player") && !GameManagerScript.instance.paused)
         {
             float direction;
 
-            if(echo.transform.position.y >= gameObject.transform.position.y)
+            if(collision.transform.position.y >= gameObject.transform.position.y)
             {
                 direction = -.25f;
             }
@@ -39,7 +34,7 @@ public class KnockBackScript : MonoBehaviour {
             {
                 direction = .25f;
             }
-                echo.GetComponent<Rigidbody2D>().transform.position -= new Vector3(knockBackAmount, knockBackAmount*direction, 0f);
+            collision.transform.position -= new Vector3(knockBackAmount, knockBackAmount*direction, 0f);
         }
     }
 }

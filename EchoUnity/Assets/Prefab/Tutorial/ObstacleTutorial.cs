@@ -32,7 +32,7 @@ public class ObstacleTutorial : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(transform.position.x < -10)
+		if(transform.position.x < -100)
         {
             Avoided();
         }

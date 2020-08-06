@@ -30,6 +30,7 @@ public class SpawnerScript : MonoBehaviour {
     internal GameObject currBoss;
     internal bool spawnNewWave;
     private AudioSource audioSource;
+    public ScrollingBackgroundScript bgscript;
 
 
     // Use this for initialization
@@ -71,9 +72,9 @@ public class SpawnerScript : MonoBehaviour {
                     {
                         Vector3 obstaclePos = new Vector3(transform.position.x+bossOffset, transform.position.y-1, 0.0f);
                         currBoss = Instantiate(Snakes[0], obstaclePos, Quaternion.identity);
-                        GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = false;
+                        bgscript.enabled = false;
                         bossTimer = 0;
-                        gameObject.GetComponentInParent<AudioSource>().Pause();                       
+                        audioSource.Pause();                       
                     }
                     {
                         bossTimer += Time.deltaTime;
@@ -103,14 +104,14 @@ public class SpawnerScript : MonoBehaviour {
 
     private void checkWave()
     {
-       GameObject.Find("BackGround").GetComponent<ScrollingBackgroundScript>().enabled = true;
+       bgscript.enabled = true;
        gameObject.GetComponentInParent<AudioSource>().UnPause();
 
             if(waveTimer >= waveWait)
             {
-                gameObject.GetComponent<GameManagerScript>().NextWave();
+                GameManagerScript.instance.NextWave();
                 obstacleCounter = 0;
-                obstaclesPerLevel += 10 * GameObject.Find("GameManager").GetComponent<GameManagerScript>().level;
+                obstaclesPerLevel += 10 * GameManagerScript.instance.level;
                 waveTimer = 0;
                 spawnNewWave = false;
             }
@@ -122,7 +123,7 @@ public class SpawnerScript : MonoBehaviour {
 
     public void spawnLifeUp()
     {
-        Vector3 obstaclePos = new Vector3(transform.position.x, Random.Range(minY+.5f, maxY-.5f), 0.0f);
+        Vector3 obstaclePos = new Vector3(transform.position.x, Random.Range(minY+5f, maxY-5f), 0.0f);
         Instantiate(fruit, obstaclePos, Quaternion.identity);
     }
 
@@ -138,5 +139,6 @@ public class SpawnerScript : MonoBehaviour {
     public void PlayDeathClip()
     {
         audioSource.PlayOneShot(bossDeath);
+        audioSource.Play();
     }
 }

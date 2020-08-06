@@ -31,7 +31,7 @@ public class FireFlyTutorial : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(transform.position.x < -10)
+		if(transform.position.x < -100)
         {
             Missed();
         }

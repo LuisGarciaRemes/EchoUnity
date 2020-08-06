@@ -24,7 +24,7 @@ public class SnakeAttackScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GameObject.Find("GameManager").GetComponent<GameManagerScript>().gameOver) {
+        if (!GameManagerScript.instance.gameOver) {
             if (attackTimer >= attackSpeed)
             {
                 anim.SetBool("isAttacking",true);

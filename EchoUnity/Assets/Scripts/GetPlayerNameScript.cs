@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GetPlayerNameScript : MonoBehaviour {
 
-    internal string stringToEdit;
     private AudioSource audioSource;
     public AudioClip highScoreSound;
     public GameObject enterButton;
+    public InputField text;
+    public GameObject displaytext;
 
     private void Awake()
     {     
@@ -17,13 +19,18 @@ public class GetPlayerNameScript : MonoBehaviour {
     private void OnEnable()
     {
         enterButton.SetActive(true);
-        stringToEdit = " HighScore!!! Please Enter Your Name";
         audioSource.PlayOneShot(highScoreSound);
+        text.gameObject.SetActive(true);
+        displaytext.SetActive(true);
     }
 
-    void OnGUI()
+    private void OnDisable()
     {
-        stringToEdit = GUI.TextField(new Rect(Screen.width/2-365, Screen.height/2+50, 730, 50), stringToEdit, 50);
-        GUI.skin.textField.fontSize = 40;
+        if (enterButton.activeSelf)
+        {
+            enterButton.SetActive(false);
+        }
+        text.gameObject.SetActive(false);
+        displaytext.SetActive(false);
     }
 }

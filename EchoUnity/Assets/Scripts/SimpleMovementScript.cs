@@ -13,48 +13,42 @@ public class SimpleMovementScript : MonoBehaviour {
     public float expandMax;
 
     private Vector3 orgPos;
-    private const float NORMALIZE = .01f;
-    private Rigidbody2D RB;
-    private GameObject gameManager;
     private float initSpeed;
 
     //Gets Rerence for gameObjects Rigidbody
     void Start () {
-        gameManager = GameObject.Find("GameManager");
-        RB = gameObject.GetComponent<Rigidbody2D>();
-        orgPos = RB.position;
+        orgPos = transform.position;
         initSpeed = speedX;
 	}
 	
 	//Moves the gameObject left or right and oscillates if oscillate option is checked
 	void Update () {
 
-        if (!gameManager.GetComponent<GameManagerScript>().paused) {
+        if (!GameManagerScript.instance.paused) {
             if (oscillate)
             {
-                RB.transform.position += new Vector3(NORMALIZE * speedX, NORMALIZE * speedY, 0.0f);
-
-            if (RB.transform.position.y >= orgPos.y + amplitude / 2 || RB.transform.position.y <= orgPos.y - amplitude / 2)
-            {
-                speedY *= -1;
-            }
+                transform.position += new Vector3(speedX, speedY, 0.0f) * Time.deltaTime;
+                if (transform.position.y >= orgPos.y + amplitude / 2 || transform.position.y <= orgPos.y - amplitude / 2)
+                {
+                    speedY *= -1;
+                }
 
             }
             else
             {
-                RB.transform.position += new Vector3(NORMALIZE * speedX, NORMALIZE * speedY, 0.0f);
+                transform.position += new Vector3(speedX, speedY, 0.0f) * Time.deltaTime;
             }
 
-            if (expand && RB.transform.localScale.x < expandMax)
+            if (expand && transform.localScale.x < expandMax)
             {
-                RB.transform.localScale += new Vector3(rateExpand * NORMALIZE, rateExpand * NORMALIZE, 0.0f);
+                transform.localScale += new Vector3(rateExpand, rateExpand, 0.0f) * Time.deltaTime;
             }
 
         }
 
         if (this.gameObject.CompareTag("Rock") || this.gameObject.CompareTag("Sticky"))
         {
-            speedX = initSpeed - ((gameManager.GetComponent<GameManagerScript>().level - 1)* gameManager.GetComponent<GameManagerScript>().speedUpAmount);
+            speedX = initSpeed - ((GameManagerScript.instance.level - 1)* GameManagerScript.instance.speedUpAmount);
         }
     }
 }
